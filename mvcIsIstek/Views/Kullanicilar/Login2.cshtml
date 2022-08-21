@@ -1,0 +1,413 @@
+﻿
+@{
+	Layout = null;
+}
+
+<link href="~/Content/materialize/css/materialize.min.css" rel="stylesheet" />
+
+<style>
+
+
+
+	.card {
+		padding-top: 20px;
+		margin: 10px 0 20px 0;
+		background-color: rgba(214, 224, 226, 0.2);
+		border-top-width: 0;
+		border-bottom-width: 2px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+		.card .card-heading {
+			padding: 0 20px;
+			margin: 0;
+		}
+
+			.card .card-heading.simple {
+				font-size: 20px;
+				font-weight: 300;
+				color: #777;
+				border-bottom: 1px solid #e5e5e5;
+			}
+
+			.card .card-heading.image img {
+				display: inline-block;
+				width: 46px;
+				height: 46px;
+				margin-right: 15px;
+				vertical-align: top;
+				border: 0;
+				-webkit-border-radius: 50%;
+				-moz-border-radius: 50%;
+				border-radius: 50%;
+			}
+
+			.card .card-heading.image .card-heading-header {
+				display: inline-block;
+				vertical-align: top;
+			}
+
+				.card .card-heading.image .card-heading-header h3 {
+					margin: 0;
+					font-size: 14px;
+					line-height: 16px;
+					color: #262626;
+				}
+
+				.card .card-heading.image .card-heading-header span {
+					font-size: 12px;
+					color: #999999;
+				}
+
+		.card .card-body {
+			padding: 0 20px;
+			margin-top: 20px;
+		}
+
+		.card .card-media {
+			padding: 0 20px;
+			margin: 0 -14px;
+		}
+
+			.card .card-media img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+
+		.card .card-actions {
+			min-height: 30px;
+			padding: 0 20px 20px 20px;
+			margin: 20px 0 0 0;
+		}
+
+		.card .card-comments {
+			padding: 20px;
+			margin: 0;
+			background-color: #f8f8f8;
+		}
+
+			.card .card-comments .comments-collapse-toggle {
+				padding: 0;
+				margin: 0 20px 12px 20px;
+			}
+
+				.card .card-comments .comments-collapse-toggle a,
+				.card .card-comments .comments-collapse-toggle span {
+					padding-right: 5px;
+					overflow: hidden;
+					font-size: 12px;
+					color: #999;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+
+	.card-comments .media-heading {
+		font-size: 13px;
+		font-weight: bold;
+	}
+
+	.card.people {
+		position: relative;
+		display: inline-block;
+		width: 170px;
+		height: 300px;
+		padding-top: 0;
+		margin-left: 20px;
+		overflow: hidden;
+		vertical-align: top;
+	}
+
+		.card.people:first-child {
+			margin-left: 0;
+		}
+
+		.card.people .card-top {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: inline-block;
+			width: 170px;
+			height: 150px;
+			background-color: #ffffff;
+		}
+
+			.card.people .card-top.green {
+				background-color: #53a93f;
+			}
+
+			.card.people .card-top.blue {
+				background-color: #427fed;
+			}
+
+		.card.people .card-info {
+			position: absolute;
+			top: 150px;
+			display: inline-block;
+			width: 100%;
+			height: 101px;
+			overflow: hidden;
+			background: #ffffff;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+			.card.people .card-info .title {
+				display: block;
+				margin: 8px 14px 0 14px;
+				overflow: hidden;
+				font-size: 16px;
+				font-weight: bold;
+				line-height: 18px;
+				color: #404040;
+			}
+
+			.card.people .card-info .desc {
+				display: block;
+				margin: 8px 14px 0 14px;
+				overflow: hidden;
+				font-size: 12px;
+				line-height: 16px;
+				color: #737373;
+				text-overflow: ellipsis;
+			}
+
+		.card.people .card-bottom {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			display: inline-block;
+			width: 100%;
+			padding: 10px 20px;
+			line-height: 29px;
+			text-align: center;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+	.card.hovercard {
+		position: relative;
+		padding-top: 0;
+		overflow: hidden;
+		text-align: center;
+		background-color: rgba(214, 224, 226, 0.2);
+	}
+
+		.card.hovercard .cardheader {
+			background-image: url('../../Content/materialize/images/Colorful-Material-Design-Background.jpg');
+ 			background-size: cover;
+			height: 135px;
+		}
+
+		.card.hovercard .avatar {
+			position: relative;
+			top: -50px;
+			margin-bottom: -50px;
+		}
+
+			.card.hovercard .avatar img {
+				width: 100px;
+				height: 100px;
+				max-width: 100px;
+				max-height: 100px;
+				-webkit-border-radius: 50%;
+				-moz-border-radius: 50%;
+				border-radius: 50%;
+				border: 5px solid rgba(255,255,255,0.5);
+			}
+
+		.card.hovercard .info {
+			padding: 4px 8px 10px;
+		}
+
+			.card.hovercard .info .title {
+				margin-bottom: 4px;
+				font-size: 24px;
+				line-height: 1;
+				color: #262626;
+				vertical-align: middle;
+			}
+
+			.card.hovercard .info .desc {
+				overflow: hidden;
+				font-size: 12px;
+				line-height: 20px;
+				color: #737373;
+				text-overflow: ellipsis;
+			}
+
+		.card.hovercard .bottom {
+			padding: 0 20px;
+			margin-bottom: 17px;
+		}
+
+	.btn {
+		border-radius: 50%;
+		width: 32px;
+		height: 32px;
+		line-height: 18px;
+	}
+</style>
+
+
+
+
+
+<div class="section no-pad-bot" id="index-banner">
+	<div class="container ">
+		<br><br>
+		<h1 class="header center orange-text">Material Design Index Sayfa Örneği</h1>
+		<div class="row center">
+			<h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+		</div>
+
+ 
+		<div class="row center">
+			@*..........................................*@
+			<div class="card hovercard">
+				<div class="cardheader">
+				</div>
+				<div class="avatar">
+					<img src="~/Content/materialize/images/a.turkerphoto.jpg" />
+ 				</div>
+				<div class="info">
+					<div class="title">
+						<a target="_blank" href="">aydın türker</a>
+					</div>
+					<div class="desc">Backend Developer, tr</div>
+					<div class="desc">Developer at <b>tr</b></div>
+				</div>
+			</div>
+			@*..........................................*@
+
+
+			<a href="#"
+				 id="download-button"
+				 class="btn-large waves-effect waves-light orange">Get Started</a>
+
+			<br />
+			<div id="pulse" class="section scrollspy">
+
+				<div style="display: flex; justify-content: space-around;">
+					<a class="btn btn-floating pulse"><i class="material-icons">menu</i></a>
+					<a class="btn btn-floating btn-large pulse"><i class="material-icons">cloud</i></a>
+					<a class="btn btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
+				</div>
+			</div>
+			<br />
+
+
+		</div>
+
+		<div class="row center">
+			<div class="col s12 m4 l2">
+				<p class="z-depth-0">z-depth-0</p>
+			</div>
+			<div class="col s12 m4 l2">
+				<p class="z-depth-1">z-depth-1</p>
+			</div>
+			<div class="col s12 m4 l2">
+				<p class="z-depth-2 shadow-demo">z-depth-2 <br /> 2.satır </p>
+			</div>
+			<div class="col s12 m4 l2">
+				<p class="z-depth-3 shadow-demo">z-depth-3 <br /> 2.satır<br /> 3.satır </p>
+			</div>
+			<div class="col s12 m4 l2">
+				<p class="z-depth-4 shadow-demo">z-depth-4 <br /> 2.satır<br /> 3.satır <br /> 4.satır</p>
+			</div>
+			<div class="col s12 m4 l2">
+				<p class="z-depth-5 shadow-demo">z-depth-5 <br /> 2.satır<br /> 3.satır <br /> 4.satır <br /> 5.satır </p>
+			</div>
+		</div>
+		<br />
+
+		<nav>
+			<div class="nav-wrapper">
+				<div class="col s12">
+					<a href="#!" class="breadcrumb">First</a>
+					<a href="#!" class="breadcrumb">Second</a>
+					<a href="#!" class="breadcrumb">Third</a>
+					<a href="#!" class="breadcrumb">4.</a>
+				</div>
+			</div>
+		</nav>
+		<br />
+
+		<div class="container">
+			<div class="fixed-action-btn horizontal">
+				<a class="btn-floating btn-large red">
+					<i class="large material-icons">mode_edit</i>
+				</a>
+				<ul>
+					<li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+					<li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+					<li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+					<li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<br />
+
+
+		<br><br>
+
+	</div>
+</div>
+
+<div class="container">
+	<div class="section">
+
+		<!--   Icon Section   -->
+		<div class="row">
+			<div class="col s12 m4">
+				<div class="icon-block">
+					<h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+					<h5 class="center">Speeds up development</h5>
+
+					<p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+				</div>
+			</div>
+
+			<div class="col s12 m4">
+				<div class="icon-block">
+					<h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+					<h5 class="center">User Experience Focused</h5>
+
+					<p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+				</div>
+			</div>
+
+			<div class="col s12 m4">
+				<div class="icon-block">
+					<h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+					<h5 class="center">Easy to work with</h5>
+
+					<p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<br><br>
+</div>
+
+
+<script>
+	$(document).ready(function () {
+		//$('.carousel').carousel();
+		//$('.slider').slider();
+
+
+	});
+</script>
+

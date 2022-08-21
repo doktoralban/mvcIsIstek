@@ -1,0 +1,187 @@
+﻿@model mvcIsIstek.App_Data.tbIsIstekleri
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbIsIstekleri</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KayıtTipi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KayıtTipi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IstekYapanKullaniciID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IstekYapanKullaniciID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MakinaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MakinaID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IstekKonusu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IstekKonusu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IstekAçıklaması)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IstekAçıklaması)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IstekAçıklamasıXP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IstekAçıklamasıXP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IstekDurumu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IstekDurumu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IstekAktif)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IstekAktif)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bitti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bitti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IstekSonuçAçıklaması)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IstekSonuçAçıklaması)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IstekSonuçAçıklamasıXP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IstekSonuçAçıklamasıXP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MakinaBakimOnarimID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MakinaBakimOnarimID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SorunGiderilmeZamanı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SorunGiderilmeZamanı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsIstekBitisZamanı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsIstekBitisZamanı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KayıtZamanı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KayıtZamanı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KayıtBilgisayar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KayıtBilgisayar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SonGuncelleyenID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SonGuncelleyenID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SonGuncellemeZamani)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SonGuncellemeZamani)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SonGuncellemeBilgisayar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SonGuncellemeBilgisayar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbIstekTipleri.Grubu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbIstekTipleri.Grubu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbLokasyonTanimlari.Lokasyon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbLokasyonTanimlari.Lokasyon)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IsIstekID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

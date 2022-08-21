@@ -1,0 +1,265 @@
+﻿@model mvcIsIstek.App_Data.tbMakinalar
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbMakinalar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kodu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kodu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tanımı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tanımı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grubu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grubu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeriNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeriNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Markası)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Markası)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modeli)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modeli)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Açıklaması)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Açıklaması)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BakimTalimatKodu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BakimTalimatKodu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ÖzelKod1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ÖzelKod1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ÖzelKod2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ÖzelKod2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ÖzelKod3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ÖzelKod3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlindigiTarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlindigiTarih)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlındığıFirmaBilgileri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlındığıFirmaBilgileri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SorumluPersonel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SorumluPersonel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanlıBakımYapılabilir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanlıBakımYapılabilir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KalibrasyonYapılabilir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KalibrasyonYapılabilir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.İşİsteklerindeGörüntülenebilir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.İşİsteklerindeGörüntülenebilir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GünlükÇalışmaSaati)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GünlükÇalışmaSaati)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fotoğrafı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fotoğrafı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aktif)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aktif)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KaydedenID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KaydedenID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KayıtZamanı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KayıtZamanı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KayıtBilgisayar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KayıtBilgisayar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SonGuncelleyenID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SonGuncelleyenID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SonGuncellemeZamani)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SonGuncellemeZamani)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SonGuncellemeBilgisayar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SonGuncellemeBilgisayar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MakinaMesaiBaşlangıçSaati)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MakinaMesaiBaşlangıçSaati)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MakinaMesaiBitişSaati)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MakinaMesaiBitişSaati)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbLokasyonTanimlari.Lokasyon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbLokasyonTanimlari.Lokasyon)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

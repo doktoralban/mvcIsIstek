@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>summernote airmode</title>
+	<!-- include jquery -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<!-- include libs stylesheets -->
+	<link href="Content/bootstrap.css" rel="stylesheet" />
+  	<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.js"></script>
+	<!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.js"></script>-->
+	<script src="Scripts/bootstrap.js"></script>
+ 	<!-- include summernote -->
+ 	<link href="Content/RichEdit/dist/summernote-bs4.css" rel="stylesheet" />
+	<script src="Content/RichEdit/dist/summernote-bs4.js"></script>
+
+	<script type="text/javascript">
+    $(document).ready(function() {
+      $('.summernote').summernote({
+        height: 300,
+				tabsize: 2,
+				airMode: false
+      });
+    });
+	</script>
+</head>
+<body>
+	<div class="summernote">
+ 	</div>
+</body>
+</html>

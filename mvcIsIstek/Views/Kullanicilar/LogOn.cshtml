@@ -1,0 +1,61 @@
+﻿
+@{
+	Layout = null;
+}
+<link href="~/Content/cssOzel/Readable/bootstrap.min.css" rel="stylesheet" />
+
+<link href="~/Content/LogOnForm.css" rel="stylesheet" />
+
+@using (Html.BeginForm("LogOn", "Kullanicilar", new { ReturnUrl = ViewBag.ReturnUrl }
+							, FormMethod.Post, new { @class = "form-signin", id = "LogOnForm", role = "form" }))
+{
+	@Html.AntiForgeryToken()
+
+	@Html.ValidationSummary(true, "Giriş yapılamadı. Kullanıcı adı ve şifrenizi kontrol ediniz.");
+
+	<div class="imgcontainer">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<img src="~/images/img_avatar2.png" alt="Avatar" class="avatar" />
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<label for="uname"><b>Kullanıcı Adı </b></label>
+				<input type="text" class="form-control" id="sKullaniciAdiID" name="sKullaniciAdi" required>
+				@*<input type="text" placeholder=" " name="uname" class="form-control" required>*@
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<label for="psw"><b>Şifre</b></label>
+				<input type="password" class="form-control" id="sSifreID" name="sSifre" required maxlength="5">
+				@*<input type="password" placeholder=" " name="psw" class="form-control" required>*@
+			</div>
+		</div>
+
+		@*<hr />*@
+
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<button type="submit">Sisteme Giriş</button>
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+}
+
+
+
+
+

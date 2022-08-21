@@ -1,0 +1,62 @@
+﻿@model IEnumerable<mvcIsIstek.App_Data.tbMakinalar>
+
+@{
+	var BaslikEk = ViewBag.SecilenSayfaNo;
+	if ((string)ViewBag.SecilenSayfaNo == "0")
+	{
+		BaslikEk = "Hepsi";
+	}
+
+	ViewBag.Title = "Sayfala - " + BaslikEk;
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<br />
+
+<p class="text-capitalize text-primary">
+	@Html.ActionLink("Yeni Makina +", "Create")
+</p>
+
+
+<h2>@ViewBag.Title</h2>
+
+
+<div class="row">
+	<div class="col-md-6">
+		@Html.Partial("PartialMakinalarListedeAra", Model)
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		@Html.Partial("PartialPagination", Model)
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-12">
+		@Html.Partial("PartialMakinalarListesi", Model)
+	</div>
+</div>
+
+
+@*----scr ler---------------------------------------------------------------*@
+<script src="~/Scripts/scrMakinaAra.js"></script>
+
+
+
+<script type="text/javascript">
+	 $(document).ready(function () {
+		 //$('h2').css('color', 'red');
+		 var sn = @ViewBag.SecilenSayfaNo;
+		 $('#li-' + sn).addClass('active');
+
+	 });
+</script>
+
+
+@*--------------------------------------------------------------------------*@

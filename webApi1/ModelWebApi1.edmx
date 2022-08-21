@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbOnemliIstekMakinaBakimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbKullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="KullanıcıAdı" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Şifresi" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="AdıSoyadı" Type="varchar" MaxLength="150" />
+          <Property Name="Grubu" Type="varchar" MaxLength="50" />
+          <Property Name="Tipi" Type="varchar" MaxLength="50" />
+          <Property Name="Adminmi" Type="bit" Nullable="false" />
+          <Property Name="Ünvanı" Type="varchar" MaxLength="150" />
+          <Property Name="LokasyonID" Type="int" />
+          <Property Name="FaaliyetAlaniID" Type="int" />
+          <Property Name="Emaili" Type="varchar" MaxLength="150" />
+          <Property Name="CepTelefonu" Type="varchar" MaxLength="50" />
+          <Property Name="DahiliTelefonu" Type="varchar" MaxLength="50" />
+          <Property Name="Fotografi" Type="varbinary(max)" />
+          <Property Name="UstAmiriID" Type="int" />
+          <Property Name="SuanSistemde" Type="bit" />
+          <Property Name="DahiliMesajlaşmadaGörünür" Type="bit" />
+          <Property Name="BakımOnarımYapabilir" Type="bit" />
+          <Property Name="YerelIPAdresi" Type="varchar" MaxLength="150" />
+          <Property Name="SonGirişZamanı" Type="datetime" />
+          <Property Name="SonÇikişZamanı" Type="datetime" />
+          <Property Name="Aktif" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="dbOnemliIstekMakinaBakimModelStoreContainer">
+          <EntitySet Name="tbKullanicilar" EntityType="Self.tbKullanicilar" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbOnemliIstekMakinaBakimModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbKullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="KullanıcıAdı" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Şifresi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdıSoyadı" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Grubu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tipi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Adminmi" Type="Boolean" Nullable="false" />
+          <Property Name="Ünvanı" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="LokasyonID" Type="Int32" />
+          <Property Name="FaaliyetAlaniID" Type="Int32" />
+          <Property Name="Emaili" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CepTelefonu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DahiliTelefonu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fotografi" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UstAmiriID" Type="Int32" />
+          <Property Name="SuanSistemde" Type="Boolean" />
+          <Property Name="DahiliMesajlaşmadaGörünür" Type="Boolean" />
+          <Property Name="BakımOnarımYapabilir" Type="Boolean" />
+          <Property Name="YerelIPAdresi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SonGirişZamanı" Type="DateTime" Precision="3" />
+          <Property Name="SonÇikişZamanı" Type="DateTime" Precision="3" />
+          <Property Name="Aktif" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="dbOnemliIstekMakinaBakimEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbKullanicilar" EntityType="Self.tbKullanicilar" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbOnemliIstekMakinaBakimModelStoreContainer" CdmEntityContainer="dbOnemliIstekMakinaBakimEntities">
+          <EntitySetMapping Name="tbKullanicilar">
+            <EntityTypeMapping TypeName="dbOnemliIstekMakinaBakimModel.tbKullanicilar">
+              <MappingFragment StoreEntitySet="tbKullanicilar">
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="KullanıcıAdı" ColumnName="KullanıcıAdı" />
+                <ScalarProperty Name="Şifresi" ColumnName="Şifresi" />
+                <ScalarProperty Name="AdıSoyadı" ColumnName="AdıSoyadı" />
+                <ScalarProperty Name="Grubu" ColumnName="Grubu" />
+                <ScalarProperty Name="Tipi" ColumnName="Tipi" />
+                <ScalarProperty Name="Adminmi" ColumnName="Adminmi" />
+                <ScalarProperty Name="Ünvanı" ColumnName="Ünvanı" />
+                <ScalarProperty Name="LokasyonID" ColumnName="LokasyonID" />
+                <ScalarProperty Name="FaaliyetAlaniID" ColumnName="FaaliyetAlaniID" />
+                <ScalarProperty Name="Emaili" ColumnName="Emaili" />
+                <ScalarProperty Name="CepTelefonu" ColumnName="CepTelefonu" />
+                <ScalarProperty Name="DahiliTelefonu" ColumnName="DahiliTelefonu" />
+                <ScalarProperty Name="Fotografi" ColumnName="Fotografi" />
+                <ScalarProperty Name="UstAmiriID" ColumnName="UstAmiriID" />
+                <ScalarProperty Name="SuanSistemde" ColumnName="SuanSistemde" />
+                <ScalarProperty Name="DahiliMesajlaşmadaGörünür" ColumnName="DahiliMesajlaşmadaGörünür" />
+                <ScalarProperty Name="BakımOnarımYapabilir" ColumnName="BakımOnarımYapabilir" />
+                <ScalarProperty Name="YerelIPAdresi" ColumnName="YerelIPAdresi" />
+                <ScalarProperty Name="SonGirişZamanı" ColumnName="SonGirişZamanı" />
+                <ScalarProperty Name="SonÇikişZamanı" ColumnName="SonÇikişZamanı" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

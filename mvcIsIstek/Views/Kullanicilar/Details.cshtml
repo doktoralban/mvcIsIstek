@@ -1,0 +1,202 @@
+﻿@model mvcIsIstek.App_Data.tbKullanicilar
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbKullanicilar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KullanıcıAdı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KullanıcıAdı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Şifresi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Şifresi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdıSoyadı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdıSoyadı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grubu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grubu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adminmi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adminmi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ünvanı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ünvanı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LokasyonID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LokasyonID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FaaliyetAlaniID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FaaliyetAlaniID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Emaili)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emaili)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CepTelefonu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CepTelefonu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DahiliTelefonu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DahiliTelefonu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fotografi)
+        </dt>
+
+        <dd>
+					@if (Model.Fotografi != null)
+					{
+
+						<img src="data:image/png;base64,
+																		@Convert.ToBase64String(Model.Fotografi,
+																		Base64FormattingOptions.None)"
+								 class="img-circle" width="100" height="100"
+								 alt="Image" />
+
+					}
+					else
+					{
+						<img src="~/images/no_user.png"
+								 class="img-circle" width="100" height="100"
+								 alt="Image" />
+					}
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UstAmiriID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UstAmiriID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuanSistemde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuanSistemde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DahiliMesajlaşmadaGörünür)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DahiliMesajlaşmadaGörünür)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BakımOnarımYapabilir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BakımOnarımYapabilir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YerelIPAdresi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YerelIPAdresi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SonGirişZamanı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SonGirişZamanı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SonÇikişZamanı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SonÇikişZamanı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aktif)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aktif)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KullaniciID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,189 @@
+﻿@model mvcIsIstek.App_Data.tbKullanicilar
+
+@{
+	Layout = null;
+}
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+	</button>
+	<h4 class="modal-title">Sistemden Çıkış ?</h4>
+</div>
+
+<div class="row">
+	@*<div class="col-md-4"></div>*@
+	<div class="col-md-12">
+		@if (ViewBag.LoginHataMesaji != null)
+			{
+			<div class="alert alert-danger">
+				<strong>Problem!</strong>  @ViewBag.LoginHataMesaji
+			</div>
+			}
+	</div>
+	@*<div class="col-md-4"></div>*@
+</div>
+
+<div class="row">
+	@*<div class="col-md-4"></div>*@
+	<div class="col-md-12">
+
+		<div class="alert alert-info">
+		</div>
+
+	</div>
+	@*<div class="col-md-4"></div>*@
+</div>
+
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		@using (Html.BeginForm("Login", "Kullanicilar", new { ReturnUrl = ViewBag.ReturnUrl }
+							, FormMethod.Post, new { @class = "form-signin", id = "LoginForm", role = "form" }))
+		{
+			@Html.AntiForgeryToken()
+
+			@Html.ValidationSummary(true, "Login failed. Check your login details.");
+
+			<hr />
+			<div class="form-group">
+				<label for="sKullaniciAdi">Kullanıcı Adı:</label>
+				<input type="text" class="form-control" id="sKullaniciAdiID" name="sKullaniciAdi" required>
+				@*@Html.TextBoxFor(m => m.KullanıcıAdı, new { @class = "form-control" })*@
+				@*@Html.ValidationMessageFor(m => m.KullanıcıAdı, "", new { @class = "text-danger" })*@
+			</div>
+				<div class="form-group">
+					<label for="sSifre">Şifre:</label>
+					<input type="password" class="form-control" id="sSifreID" name="sSifre" required maxlength="5">
+					@*@Html.PasswordFor(m => m.Şifresi, new { @class = "form-control" })*@
+					@*@Html.ValidationMessageFor(m => m.Şifresi, "", new { @class = "text-danger" })*@
+				</div>
+
+				<hr />
+
+				<button id="btnLogin" type="submit" class="btn btn-lg btn-warning">Giriş Action</button>
+
+				<button id="btnLogin2" type="button" class="btn btn-lg btn-danger">Giriş json</button>
+
+			}
+
+
+	</div>
+</div>
+
+<br />
+
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="alert alert-info">
+		</div>
+
+	</div>
+</div>
+
+<div class="modal-footer">
+	<button type="button" class="btn btn-default"
+					data-dismiss="modal">
+		Kapat
+	</button>
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#LoginForm").validate({
+			rules: {
+				sKullaniciAdi: {
+					required: true,
+					minlength: 2
+				},
+				sSifre: {
+					required: true,
+					minlength: 5
+				},
+			messages: {
+				sKullaniciAdi: {
+					required: "Please enter a username",
+					minlength: "Your username must consist of at least 2 characters"
+				},
+				sSifre: {
+					required: "Please provide a password",
+					minlength: "Your password must be at least 5 characters long"
+				},
+
+			errorElement: "em",
+			errorPlacement: function (error, element) {
+				// Add the `help-block` class to the error element
+				error.addClass("help-block");
+
+				// Add `has-feedback` class to the parent div.form-group
+				// in order to add icons to inputs
+				element.parents(".col-sm-5").addClass("has-feedback");
+
+				if (element.prop("type") === "checkbox") {
+					error.insertAfter(element.parent("label"));
+				} else {
+					error.insertAfter(element);
+				}
+
+				// Add the span element, if doesn't exists, and apply the icon classes to it.
+				if (!element.next("span")[0]) {
+					$("<span class='glyphicon glyphicon-remove form-control-feedback'></span>").insertAfter(element);
+				}
+			},
+			success: function (label, element) {
+				// Add the span element, if doesn't exists, and apply the icon classes to it.
+				if (!$(element).next("span")[0]) {
+					$("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
+				}
+			},
+			highlight: function (element, errorClass, validClass) {
+				$(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
+				$(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
+			},
+			unhighlight: function (element, errorClass, validClass) {
+				$(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
+				$(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
+			}
+		});
+	});
+</script>
+
+
+<script>
+	$(function () {
+		$('#btnLogin2').click(function (e) {
+
+			var jsonObject = {
+				"sKullaniciAdi": $('#sKullaniciAdiID').val(),
+				"sSifre": $('#sSifreID').val()
+			};
+
+			$.ajax({
+				url: "@Url.Action("LoginKontrolJson")",
+                type: "POST",
+                data: JSON.stringify(jsonObject),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                    alert(response.responseText);
+            },
+								success: function (response) {
+									if (response == "1")
+									{
+										alert("Doğru");
+										window.location.href = '@Url.Action("Index", "Home")';
+									}
+									else
+									{
+										alert(response);
+ 									}
+                }
+            });
+
+        });
+    });
+</script>

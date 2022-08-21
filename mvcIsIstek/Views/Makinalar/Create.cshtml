@@ -1,0 +1,306 @@
+﻿@model mvcIsIstek.App_Data.tbMakinalar
+
+@{
+	ViewBag.Title = "Yeni Makina Ekle";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<link href="~/Scripts/jqueryDatePicker/jquery-ui.css" rel="stylesheet" />
+<link href="~/Scripts/jqueryDatePicker/jquery-ui.theme.css" rel="stylesheet" />
+
+<script src="~/Scripts/jqueryDatePicker/jquery-ui.js"></script>
+<script src="~/Scripts/jqueryDatePicker/jquery-1.12.4.js"></script>*@
+
+
+
+<style>
+	/*.h2
+	{
+		color:ActiveCaption;
+	}*/
+	#exTab1 .tab-content {
+		color: white;
+		background-color: #ffd800;
+		padding: 5px 15px;
+	}
+
+	#exTab2 h3 {
+		color: white;
+		background-color: #4cff00;
+		padding: 5px 15px;
+	}
+
+
+
+	#exTab1 .nav-pills > li > a {
+		border-radius: 0;
+	}
+
+
+
+	#exTab3 .nav-pills > li > a {
+		border-radius: 4px 4px 0 0;
+	}
+
+	#exTab3 .tab-content {
+		color: #808080;
+		background-color: rgba(238, 200, 172, 0.37);
+		padding: 5px 15px;
+	}
+</style>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h2>@ViewBag.Title</h2>
+	</div>
+</div>
+
+<div class="row">
+	@using (Html.BeginForm("Create", "Makinalar", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+	{
+		@Html.AntiForgeryToken()
+		<div class="form-horizontal">
+			<hr />
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			@*.................................................................*@
+			<div id="exTab3" class="container">
+				<div class="col-md-8">
+					<ul class="nav nav-pills">
+						<li role="presentation" class="active"><a href="#Sayfa1" aria-controls="Sayfa1" role="tab" data-toggle="tab">Sayfa 1</a></li>
+						<li role="presentation"><a href="#Sayfa2" aria-controls="Sayfa2" role="tab" data-toggle="tab">Sayfa 2</a></li>
+						<li role="presentation"><a href="#Sayfa3" aria-controls="Sayfa3" role="tab" data-toggle="tab">Sayfa 3</a></li>
+						<li role="presentation"><a href="#Sayfa4" aria-controls="Sayfa4" role="tab" data-toggle="tab">Sayfa 4</a></li>
+						<li role="presentation"><a href="#Sayfa5" aria-controls="Sayfa5" role="tab" data-toggle="tab">Sayfa 5</a></li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="Sayfa1">
+							<br />
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Kodu, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Kodu, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Kodu, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Tanımı, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Tanımı, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Tanımı, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.LokasyonID, "Lokasyon", htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.DropDownList("LokasyonIDs", null, htmlAttributes: new { @class = "form-control" })
+									@Html.ValidationMessageFor(model => model.LokasyonID, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Grubu, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Grubu, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Grubu, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Tipi, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.DropDownList("Tipis", null, htmlAttributes: new { @class = "form-control" })
+
+									@Html.ValidationMessageFor(model => model.Tipi, "", new { @class = "text-danger" })
+									<br />
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="Sayfa2">
+							<br />
+							<div class="form-group">
+								@Html.LabelFor(model => model.SeriNo, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.SeriNo, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.SeriNo, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Markası, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Markası, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Markası, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Modeli, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Modeli, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Modeli, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Açıklaması, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Açıklaması, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Açıklaması, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+
+						</div>
+						<div role="tabpanel" class="tab-pane" id="Sayfa3">
+							<br />
+							<div class="form-group">
+								@Html.LabelFor(model => model.BakimTalimatKodu, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.BakimTalimatKodu, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.BakimTalimatKodu, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.AlindigiTarih, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@*@Html.JQueryUI().DatepickerFor(model => model.AlindigiTarih, new { htmlAttributes = new { @class = "form-control" } })*@
+									@*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*@
+
+
+									@*@Html.EditorFor(model => model.AlindigiTarih)*@
+
+									@Html.EditorFor(model => model.AlındığıTarih, new { htmlAttributes = new { @class = "form-control",type= "date" } })
+
+									@*@Html.ValidationMessageFor(model => model.AlindigiTarih, "", new { @class = "text-danger" })*@
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.SorumluPersonel, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.SorumluPersonel, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.SorumluPersonel, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+
+						</div>
+						<div role="tabpanel" class="tab-pane" id="Sayfa4">
+							<br />
+							<div class="form-group">
+								@Html.LabelFor(model => model.PlanlıBakımYapılabilir, htmlAttributes: new { @class = "control-label col-md-3" })
+								<div class="col-md-9">
+									<div class="checkbox">
+										@Html.EditorFor(model => model.PlanlıBakımYapılabilir, new { @class = "form-control" })
+										@Html.ValidationMessageFor(model => model.PlanlıBakımYapılabilir, "", new { @class = "text-danger" })
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.KalibrasyonYapılabilir, htmlAttributes: new { @class = "control-label col-md-3" })
+								<div class="col-md-9">
+									<div class="checkbox">
+										@Html.EditorFor(model => model.KalibrasyonYapılabilir, new { @class = "form-control" })
+										@Html.ValidationMessageFor(model => model.KalibrasyonYapılabilir, "", new { @class = "text-danger" })
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.İşİsteklerindeGörüntülenebilir, htmlAttributes: new { @class = "control-label col-md-3" })
+								<div class="col-md-9">
+									<div class="checkbox">
+										@Html.EditorFor(model => model.İşİsteklerindeGörüntülenebilir, new { @class = "form-control" })
+										@Html.ValidationMessageFor(model => model.İşİsteklerindeGörüntülenebilir, "", new { @class = "text-danger" })
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Aktif, htmlAttributes: new { @class = "control-label col-md-3" })
+								<div class="col-md-9">
+									<div class="checkbox">
+										@Html.EditorFor(model => model.Aktif, new { @class = "form-control" })
+										@Html.ValidationMessageFor(model => model.Aktif, "", new { @class = "text-danger" })
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div role="tabpanel" class="tab-pane" id="Sayfa5">
+							<br />
+							<div class="form-group">
+								@Html.LabelFor(model => model.Fotoğrafı, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									<input type="file" id="foto" name="uploadYeni" />
+
+									@Html.ValidationMessageFor(m => m.Fotoğrafı, "", new { @class = "text-danger" })
+
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+					<hr />
+					<div class="form-group">
+						<div class="col-md-offset-1 col-md-10">
+							<button type="submit" class="btn btn-warning">
+								<span class="glyphicon glyphicon-floppy-save"></span>
+								EKLE
+							</button>
+						</div>
+					</div>
+
+					<div class="form-group" style="visibility:hidden">
+						@Html.ValidationSummary("Bilgileri kontrol ediniz.", new { @class = "text-danger" })
+					</div>
+
+				</div>
+			</div>
+			@*.................................................................*@
+
+			<hr />
+		</div>
+	}
+
+</div>
+
+
+<div>
+	@Html.ActionLink("Sayfala", "Sayfala")
+
+</div>
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+<script type="text/javascript">
+	$(function () {
+		var dateControl = document.querySelector('input[type="date"]');
+		//dateControl.value = '2017-06-01';
+
+
+
+	});
+</script>
+
+
+
+
+
+

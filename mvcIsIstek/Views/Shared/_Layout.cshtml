@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	@*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*@
+	<meta name="description" content='@ViewBag.SayfaDescription' />
+	<meta name="keywords" content='@ViewBag.SayfaKeywords' />
+
+	<title>@ViewBag.SayfaTitle</title>
+	@*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*@
+
+
+	@*<title>@ViewBag.Title - My ASP.NET Application</title>*@
+	@Styles.Render("~/Content/css")
+
+	@Styles.Render("~/Content/themes/base/css")
+
+	@*slate, test*@
+	@*<link href="~/Content/cssOzel/Slate/bootstrap.min.css" rel="stylesheet" />*@
+
+	@Scripts.Render("~/bundles/modernizr")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryui")
+	@*..............................*@
+
+	@*..............................*@
+	<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+	<link id="cssfile" href="" rel="stylesheet" />
+
+	<script>
+
+		function functionCss(cssName) {
+
+			$("link#cssfile").attr("href", cssName);
+
+		}
+
+
+	</script>
+
+
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" 
+									data-toggle="collapse" 
+									data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					@*<img src="~/images/1200px-Service_mark.svg.png" />*@
+					@*@Html.ActionLink("İş İstekleri - Makina Bakım**", "Index", "Home"
+			 , new { area = "" }, new { @class = "navbar-brand" })*@
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="homeLogo img-circle">@Html.ActionLink(" ", "Index", "Home")</li>
+						@*<li>@Html.ActionLink("About", "About", "Home")</li>*@
+						@*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+						<li>@Html.ActionLink("Makinalar", "Sayfala", "Makinalar")</li>
+						<li>@Html.ActionLink("Makina Sorgu", "MakinalarSorguEkrani", "Makinalar")</li>
+
+						<li>
+							@*@Html.ActionLink("Seçili Makinalar", "SecilenIdlereGoreMakinalar", "Makinalar",
+			new {
+				sSecilenidler = "98,107,114,145,147,"
+			},
+			null
+			)*@
+						</li>
+
+						<li>@Html.ActionLink("İş İstekleri", "Index", "IsIstekleri")</li>
+						<li>@Html.ActionLink("Kullanicilar", "Index", "Kullanicilar")</li>
+
+
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								Tema *
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Cerulean/bootstrap.min.css")');Fn_temaSecildi('Cerulean');">Cerulean</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Cosmo/bootstrap.min.css")');">Cosmo</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Cyborg/bootstrap.min.css")');">Cyborg</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Darkly/bootstrap.min.css")');">Darkly</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Flatly/bootstrap.min.css")');">Flatly</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Journal/bootstrap.min.css")');">Journal</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Lumen/bootstrap.min.css")');">Lumen</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Paper/bootstrap.min.css")');">Paper</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Readable/bootstrap.min.css")');">Readable</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/SandStone/bootstrap.min.css")');">SandStone</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Simplex/bootstrap.min.css")');">Simplex</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Slate/bootstrap.min.css")');">Slate</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Solar/bootstrap.min.css")');">Solar</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/SpaceLab/bootstrap.min.css")');">SpaceLab</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/SuperHero/bootstrap.min.css")');">SuperHero</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/United/bootstrap.min.css")');">United</a></li>
+								<li><a href="javascript:functionCss('@Url.Content("~/Content/cssOzel/Yeti/bootstrap.min.css")');">Yeti</a></li>
+							</ul>
+						</li>
+
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						@if (Session["sesFotografi"] != null)
+						{ 
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModalLogOut">
+ 												<img src="data:image/png;base64,
+								@Convert.ToBase64String((byte[])Session["sesFotografi"],
+									Base64FormattingOptions.None)"
+						 class="img-circle"
+						 width="40" height="40"
+						 alt="Image" />
+						</a>
+					</li>
+}
+					@*...................................................*@
+
+					@{
+	if (Session["sesUserName"] != null)
+	{
+					<li>
+						@{
+						var sAdSoyad = @Session["sesAdıSoyadı"].ToString();  
+						}
+						<a href="/Kullanicilar/ChangePass"
+							 data-toggle="tooltip"
+							 data-html="true"
+							 data-placement="right"
+							 title=@sAdSoyad  >
+							@Session["sesUserName"].ToString()
+						</a>
+					</li>
+
+}
+else
+{
+					<li>
+						<a href="#" onclick="createModalLogin('@Url.Action("Login", "Kullanicilar")')">
+							<span class="glyphicon glyphicon-user"></span>
+							Login
+						</a>
+					</li>
+}
+					}
+					@*<li>
+	<a href="#">
+		<span class="glyphicon glyphicon-log-in"></span>
+		Login
+		</a>
+	</li>*@
+					</ul> 
+				</div> 
+			</div>
+		</div>
+	</div>
+
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				@RenderBody()
+				<hr />
+				<footer>
+					<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+				</footer>
+
+			</div>
+		</div>
+
+		
+	@**********************************************************@
+	<div class="modal fade" id="myModalLogin" role="dialog"
+			 aria-labelledby="myModalLabel" aria-hidden="true"
+			 data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog">
+			<div class="modal-content" id="modelContentLogin">
+			</div>
+		</div>
+	</div>
+	@*............................................................*@
+	<!-- Modal -->
+	<div class="modal fade" id="myModalLogOut" role="dialog">
+		<div class="modal-dialog modal-sm">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Sistemden Çıkış</h4>
+				</div>
+				<div class="modal-body">
+					<h3>	Sistemden çıkılacak, eminmisiniz?</h3>
+					</div>
+				<div class="modal-footer">
+					<p>
+
+						<div class="pull-left">
+							@Html.ActionLink("  Çıkış ?", "LogOut", "Kullanicilar"
+					, null, new { @class = "btn btn-danger glyphicon glyphicon-log-out" })
+						</div>
+
+						<div class="pull-right">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
+						</div>
+
+					</p>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	@**********************************************************@
+
+
+
+		@Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/bootstrap")
+		@RenderSection("scripts", required: false)
+</body>
+
+
+
+</html>
+
+
+
+<script type="text/javascript">
+	function Fn_temaSecildi(sTema) {
+
+		var oTema = {};
+		oTema.p_Tema = sTema;
+		oTema.url = "@Url.Action("TemaSecildi","Home")";
+		oTema.type = "POST";
+		oTema.dataType = "json";
+		oTema.data = JSON.stringify({ sTema: oTema.p_Tema });
+		oTema.contentType = "application/json";
+		oTema.success = function (response) {
+			alert("tamam - " + oTema.p_Tema + ' - ' + response.ResultValue);
+		};
+		oTema.error = function (response) {
+			alert("err - " + response);
+		};
+		$.ajax(oTema);
+
+	}
+</script>
+
+
+
+<script>
+	$(document).ready(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+</script>
+
+<script>
+	function createModalLogin(url) {
+		$('#modelContentLogin').load(url);
+		$('#myModalLogin').modal('show');
+	}
+</script>
+
+@*<script>
+	function createModalLogOut() {
+ 		$('#myModalLogOut').modal('show');
+	}
+</script>*@

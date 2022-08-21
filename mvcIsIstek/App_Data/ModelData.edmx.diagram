@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="715255e6c3ca4ad7ba9d7d8d104b6bd7" Name="Diagram1">
+        <EntityTypeShape EntityType="dbOnemliIstekMakinaBakimModel.tbKullanicilar" Width="1.5" PointX="0.625" PointY="3.875" IsExpanded="true" FillColor="255, 255, 192" />
+        <EntityTypeShape EntityType="dbOnemliIstekMakinaBakimModel.tbMakinalar" Width="1.5" PointX="2.5" PointY="1.25" FillColor="192, 255, 255" />
+        <EntityTypeShape EntityType="dbOnemliIstekMakinaBakimModel.tbIsIstekleri" Width="1.5" PointX="4.375" PointY="1.25" FillColor="192, 255, 192" />
+        <EntityTypeShape EntityType="dbOnemliIstekMakinaBakimModel.tbIstekTipleri" Width="1.5" PointX="6" PointY="1.25" FillColor="192, 255, 192" />
+        <AssociationConnector Association="dbOnemliIstekMakinaBakimModel.FK_tbIsIstekleri_tbIstekTipleri" />
+        <EntityTypeShape EntityType="dbOnemliIstekMakinaBakimModel.tbIsIstek_Degerlendirmeleri" Width="1.5" PointX="6" PointY="3.375" FillColor="192, 255, 192" />
+        <EntityTypeShape EntityType="dbOnemliIstekMakinaBakimModel.tbIsIstek_EkliDosyalar" Width="1.5" PointX="6.25" PointY="6.625" FillColor="192, 255, 192" />
+        <AssociationConnector Association="dbOnemliIstekMakinaBakimModel.FK_IsIstek_Degerlendirmeleri_tbIsIstekleri" />
+        <AssociationConnector Association="dbOnemliIstekMakinaBakimModel.FK_tbIsIstek_EkliDosyalar_tbIsIstekleri" />
+        <EntityTypeShape EntityType="dbOnemliIstekMakinaBakimModel.tbLokasyonTanimlari" Width="1.5" PointX="0.5" PointY="1.125" FillColor="255, 255, 192" />
+        <AssociationConnector Association="dbOnemliIstekMakinaBakimModel.FK_tbIsIstekleri_tbLokasyonTanimlari" />
+        <AssociationConnector Association="dbOnemliIstekMakinaBakimModel.FK_tbMakinalar_tbLokasyonTanimlari" />
+        <EntityTypeShape EntityType="dbOnemliIstekMakinaBakimModel.v_Kullanici_Rolleri" Width="1.5" PointX="8" PointY="2.625" FillColor="224, 224, 224" />
+        <EntityTypeShape EntityType="dbOnemliIstekMakinaBakimModel.tbKategoriler" Width="1.5" PointX="4.25" PointY="7.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

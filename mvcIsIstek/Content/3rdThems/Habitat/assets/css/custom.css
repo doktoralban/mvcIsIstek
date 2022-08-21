@@ -1,0 +1,12 @@
+.logo {
+	text-align: center;
+	width: 300px;
+	height: 100px
+}
+
+	.logo a {
+		top: 0px;
+		display: block;
+		position: relative;
+		z-index: 20;
+	}

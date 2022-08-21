@@ -1,0 +1,107 @@
+﻿@model mvcIsIstek.App_Data.tbIsIstekleri
+
+@{
+    ViewBag.Title = "Yeni İş İsteği";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} 
+
+
+@*.........................................*@ 
+
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+	<hr />
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.IstekLokasyonID, "Lokasyon", htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.DropDownListFor(model => model.IstekLokasyonID
+					, ViewBag.IstekLokasyonID as SelectList, null
+						, htmlAttributes: new { @class = "form-control" })
+
+			@Html.ValidationMessageFor(model => model.IstekLokasyonID, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.MakinaID, "Makina", htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+
+			@Html.DropDownListFor(model => model.MakinaID
+					, new SelectList(" "), " -- "
+						, htmlAttributes: new { @class = "form-control" })
+
+
+			@Html.ValidationMessageFor(model => model.MakinaID, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.IstekKonusu, "Konu", htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.IstekKonusu, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.IstekKonusu, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.KayıtTipi, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.DropDownList("KayitTipis", null, htmlAttributes: new { @class = "form-control" })
+
+			@Html.ValidationMessageFor(model => model.KayıtTipi, "", new { @class = "text-danger" })
+			<br />
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.IstekAçıklamasıXP, "Açıklama", htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.TextAreaFor(m => m.IstekAçıklamasıXP, new { htmlAttributes = new { @class = "form-control" } })
+			<br /><br />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" value="EKLE" class="btn btn-warning" />
+		</div>
+	</div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script>
+	$(document).ready(function () {
+		document.getElementById('IstekLokasyonID').selectedIndex =-1;
+		$('#IstekLokasyonID').change(function () {
+			$.get("/IsIstekleri/LokasyonaGoreMakinalar"
+				, { secilenLokasyonID: $('#IstekLokasyonID').val() },
+				function (data) {
+					$('#MakinaID').empty();
+					$('#MakinaID').focus();
+					$.each(data, function (index, row) {
+						$('#MakinaID').append("<option value='" + row.MakinaID + "'>" + row.kodTanim + "</option>")
+					});
+				});
+		});
+	});
+</script>
+
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+	tinymce.init({ selector: 'textarea', width: 500 });
+</script>

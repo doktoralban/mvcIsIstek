@@ -1,0 +1,62 @@
+﻿@model IEnumerable<mvcIsIstek.App_Data.tbIsIstekleri>
+
+@{
+    ViewBag.Title = "İş İstekleri Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Yeni İstek +", "Create")
+</p>
+<table class="table">
+    <tr>
+			<th>
+				@Html.DisplayNameFor(model => model.tbLokasyonTanimlari.Lokasyon)
+			</th>
+        <th>
+            @Html.DisplayNameFor(model => model.MakinaID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IstekKonusu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IstekAçıklaması)
+        </th> 
+			<th>
+				@Html.DisplayNameFor(model => model.IstekDurumu)
+			</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+    
+			<td>
+				@Html.DisplayFor(modelItem => item.tbLokasyonTanimlari.Lokasyon)
+			</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MakinaID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IstekKonusu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IstekAçıklaması)
+        </td>
+         
+        <td>
+            @Html.DisplayFor(modelItem => item.IstekDurumu)
+        </td>
+      
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IsIstekID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IsIstekID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IsIstekID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,822 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbOnemliIstekMakinaBakimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbIsIstek_Degerlendirmeleri">
+          <Key>
+            <PropertyRef Name="IstekDegerlendirmeID" />
+          </Key>
+          <Property Name="IstekDegerlendirmeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsIstekID" Type="int" Nullable="false" />
+          <Property Name="DegerlendirenKullaniciID" Type="int" Nullable="false" />
+          <Property Name="DeğerlendirmeDurumu" Type="varchar" MaxLength="50" />
+          <Property Name="Onaylı" Type="bit" />
+          <Property Name="Puanı" Type="int" Nullable="false" />
+          <Property Name="Açıklaması" Type="varchar" MaxLength="500" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayıtZamanı" Type="datetime" />
+          <Property Name="KayıtBilgisayar" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbIsIstek_EkliDosyalar">
+          <Key>
+            <PropertyRef Name="IsIstekEkliDosyaID" />
+          </Key>
+          <Property Name="IsIstekEkliDosyaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsIstekID" Type="int" Nullable="false" />
+          <Property Name="EkDosyaTipi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EkDosyaAdı" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="EkDosyaKlasorYolu" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="EkleyenKullaniciID" Type="int" Nullable="false" />
+          <Property Name="KayıtZamanı" Type="datetime" />
+          <Property Name="KayıtBilgisayar" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbIsIstekleri">
+          <Key>
+            <PropertyRef Name="IsIstekID" />
+          </Key>
+          <Property Name="IsIstekID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KayıtTipi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IstekYapanKullaniciID" Type="int" Nullable="false" />
+          <Property Name="IstekTipiID" Type="int" Nullable="false" />
+          <Property Name="IstekLokasyonID" Type="int" Nullable="false" />
+          <Property Name="MakinaID" Type="int" />
+          <Property Name="IstekKonusu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IstekAçıklaması" Type="varchar(max)" />
+          <Property Name="IstekAçıklamasıXP" Type="varchar(max)" />
+          <Property Name="IstekDurumu" Type="varchar" MaxLength="50" />
+          <Property Name="IstekAktif" Type="bit" Nullable="false" />
+          <Property Name="Bitti" Type="bit" Nullable="false" />
+          <Property Name="IstekSonuçAçıklaması" Type="varchar(max)" />
+          <Property Name="IstekSonuçAçıklamasıXP" Type="varchar(max)" />
+          <Property Name="MakinaBakimOnarimID" Type="int" />
+          <Property Name="SorunGiderilmeZamanı" Type="datetime" />
+          <Property Name="IsIstekBitisZamanı" Type="datetime" />
+          <Property Name="KayıtZamanı" Type="datetime" />
+          <Property Name="KayıtBilgisayar" Type="varchar" MaxLength="50" />
+          <Property Name="SonGuncelleyenID" Type="int" />
+          <Property Name="SonGuncellemeZamani" Type="datetime" />
+          <Property Name="SonGuncellemeBilgisayar" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbIstekTipleri">
+          <Key>
+            <PropertyRef Name="IstekTipiID" />
+          </Key>
+          <Property Name="IstekTipiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Grubu" Type="varchar" MaxLength="50" />
+          <Property Name="Tipi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Açıklama" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbKategoriler">
+          <Key>
+            <PropertyRef Name="KategoriID" />
+          </Key>
+          <Property Name="KategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipi" Type="varchar" MaxLength="50" />
+          <Property Name="Kategori" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Aktif" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbKullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="KullanıcıAdı" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Şifresi" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="AdıSoyadı" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Grubu" Type="varchar" MaxLength="50" />
+          <Property Name="Tipi" Type="varchar" MaxLength="50" />
+          <Property Name="Adminmi" Type="bit" Nullable="false" />
+          <Property Name="Ünvanı" Type="varchar" MaxLength="150" />
+          <Property Name="LokasyonID" Type="int" />
+          <Property Name="FaaliyetAlaniID" Type="int" />
+          <Property Name="Emaili" Type="varchar" MaxLength="150" />
+          <Property Name="CepTelefonu" Type="varchar" MaxLength="50" />
+          <Property Name="DahiliTelefonu" Type="varchar" MaxLength="50" />
+          <Property Name="Fotografi" Type="varbinary(max)" />
+          <Property Name="UstAmiriID" Type="int" />
+          <Property Name="SuanSistemde" Type="bit" />
+          <Property Name="DahiliMesajlaşmadaGörünür" Type="bit" />
+          <Property Name="BakımOnarımYapabilir" Type="bit" />
+          <Property Name="YerelIPAdresi" Type="varchar" MaxLength="150" />
+          <Property Name="SonGirişZamanı" Type="datetime" />
+          <Property Name="SonÇikişZamanı" Type="datetime" />
+          <Property Name="Aktif" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbLokasyonTanimlari">
+          <Key>
+            <PropertyRef Name="LokasyonID" />
+          </Key>
+          <Property Name="LokasyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Lokasyon" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Şirket" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Fabrika" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Şube" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Departman" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbMakinalar">
+          <Key>
+            <PropertyRef Name="MakinaID" />
+          </Key>
+          <Property Name="MakinaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kodu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tanımı" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Grubu" Type="varchar" MaxLength="50" />
+          <Property Name="Tipi" Type="varchar" MaxLength="50" />
+          <Property Name="SeriNo" Type="varchar" MaxLength="50" />
+          <Property Name="Markası" Type="varchar" MaxLength="50" />
+          <Property Name="Modeli" Type="varchar" MaxLength="50" />
+          <Property Name="Açıklaması" Type="varchar(max)" />
+          <Property Name="LokasyonID" Type="int" Nullable="false" />
+          <Property Name="BakimTalimatKodu" Type="varchar" MaxLength="50" />
+          <Property Name="ÖzelKod1" Type="varchar" MaxLength="50" />
+          <Property Name="ÖzelKod2" Type="varchar" MaxLength="50" />
+          <Property Name="ÖzelKod3" Type="varchar" MaxLength="50" />
+          <Property Name="AlındığıTarih" Type="date" />
+          <Property Name="AlındığıFirmaBilgileri" Type="varchar(max)" />
+          <Property Name="SorumluPersonel" Type="varchar" MaxLength="250" />
+          <Property Name="PlanlıBakımYapılabilir" Type="bit" Nullable="false" />
+          <Property Name="KalibrasyonYapılabilir" Type="bit" Nullable="false" />
+          <Property Name="İşİsteklerindeGörüntülenebilir" Type="bit" Nullable="false" />
+          <Property Name="GünlükÇalışmaSaati" Type="decimal" Precision="9" Scale="1" />
+          <Property Name="Fotoğrafı" Type="varbinary(max)" />
+          <Property Name="Aktif" Type="bit" Nullable="false" />
+          <Property Name="KaydedenID" Type="int" />
+          <Property Name="KayıtZamanı" Type="datetime" />
+          <Property Name="KayıtBilgisayar" Type="varchar" MaxLength="50" />
+          <Property Name="SonGuncelleyenID" Type="int" />
+          <Property Name="SonGuncellemeZamani" Type="datetime" />
+          <Property Name="SonGuncellemeBilgisayar" Type="varchar" MaxLength="50" />
+          <Property Name="MakinaMesaiBaşlangıçSaati" Type="varchar" MaxLength="50" />
+          <Property Name="MakinaMesaiBitişSaati" Type="varchar" MaxLength="50" />
+          <Property Name="AlindigiTarih" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbOnemliIstekMakinaBakim.dbo.v_Kullanici_Rolleri' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_Kullanici_Rolleri">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+            <PropertyRef Name="KullanıcıAdı" />
+            <PropertyRef Name="KullaniciRolID" />
+            <PropertyRef Name="RolID" />
+            <PropertyRef Name="RolName" />
+            <PropertyRef Name="Adminmi" />
+            <PropertyRef Name="Aktif" />
+          </Key>
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="KullanıcıAdı" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="AdıSoyadı" Type="varchar" MaxLength="150" />
+          <Property Name="Grubu" Type="varchar" MaxLength="50" />
+          <Property Name="Tipi" Type="varchar" MaxLength="50" />
+          <Property Name="KullaniciRolID" Type="int" Nullable="false" />
+          <Property Name="RolID" Type="int" Nullable="false" />
+          <Property Name="RolName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ünvanı" Type="varchar" MaxLength="150" />
+          <Property Name="LokasyonID" Type="int" />
+          <Property Name="Lokasyon" Type="varchar" MaxLength="150" />
+          <Property Name="Şirket" Type="varchar" MaxLength="150" />
+          <Property Name="Fabrika" Type="varchar" MaxLength="150" />
+          <Property Name="Şube" Type="varchar" MaxLength="150" />
+          <Property Name="Departman" Type="varchar" MaxLength="150" />
+          <Property Name="FaaliyetAlaniID" Type="int" />
+          <Property Name="FaaliyetAlani" Type="varchar" MaxLength="50" />
+          <Property Name="Emaili" Type="varchar" MaxLength="150" />
+          <Property Name="Fotografi" Type="varbinary(max)" />
+          <Property Name="Adminmi" Type="bit" Nullable="false" />
+          <Property Name="CepTelefonu" Type="varchar" MaxLength="50" />
+          <Property Name="DahiliTelefonu" Type="varchar" MaxLength="50" />
+          <Property Name="BakımOnarımYapabilir" Type="bit" />
+          <Property Name="Aktif" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_IsIstek_Degerlendirmeleri_tbIsIstekleri">
+          <End Role="tbIsIstekleri" Type="Self.tbIsIstekleri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbIsIstek_Degerlendirmeleri" Type="Self.tbIsIstek_Degerlendirmeleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbIsIstekleri">
+              <PropertyRef Name="IsIstekID" />
+            </Principal>
+            <Dependent Role="tbIsIstek_Degerlendirmeleri">
+              <PropertyRef Name="IsIstekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbIsIstek_EkliDosyalar_tbIsIstekleri">
+          <End Role="tbIsIstekleri" Type="Self.tbIsIstekleri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbIsIstek_EkliDosyalar" Type="Self.tbIsIstek_EkliDosyalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbIsIstekleri">
+              <PropertyRef Name="IsIstekID" />
+            </Principal>
+            <Dependent Role="tbIsIstek_EkliDosyalar">
+              <PropertyRef Name="IsIstekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbIsIstekleri_tbIstekTipleri">
+          <End Role="tbIstekTipleri" Type="Self.tbIstekTipleri" Multiplicity="1" />
+          <End Role="tbIsIstekleri" Type="Self.tbIsIstekleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbIstekTipleri">
+              <PropertyRef Name="IstekTipiID" />
+            </Principal>
+            <Dependent Role="tbIsIstekleri">
+              <PropertyRef Name="IstekTipiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbIsIstekleri_tbLokasyonTanimlari">
+          <End Role="tbLokasyonTanimlari" Type="Self.tbLokasyonTanimlari" Multiplicity="1" />
+          <End Role="tbIsIstekleri" Type="Self.tbIsIstekleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbLokasyonTanimlari">
+              <PropertyRef Name="LokasyonID" />
+            </Principal>
+            <Dependent Role="tbIsIstekleri">
+              <PropertyRef Name="IstekLokasyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbMakinalar_tbLokasyonTanimlari">
+          <End Role="tbLokasyonTanimlari" Type="Self.tbLokasyonTanimlari" Multiplicity="1" />
+          <End Role="tbMakinalar" Type="Self.tbMakinalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbLokasyonTanimlari">
+              <PropertyRef Name="LokasyonID" />
+            </Principal>
+            <Dependent Role="tbMakinalar">
+              <PropertyRef Name="LokasyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbOnemliIstekMakinaBakimModelStoreContainer">
+          <EntitySet Name="tbIsIstek_Degerlendirmeleri" EntityType="Self.tbIsIstek_Degerlendirmeleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbIsIstek_EkliDosyalar" EntityType="Self.tbIsIstek_EkliDosyalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbIsIstekleri" EntityType="Self.tbIsIstekleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbIstekTipleri" EntityType="Self.tbIstekTipleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbKategoriler" EntityType="Self.tbKategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbKullanicilar" EntityType="Self.tbKullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbLokasyonTanimlari" EntityType="Self.tbLokasyonTanimlari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbMakinalar" EntityType="Self.tbMakinalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_Kullanici_Rolleri" EntityType="Self.v_Kullanici_Rolleri" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_Kullanici_Rolleri].[KullaniciID] AS [KullaniciID], 
+    [v_Kullanici_Rolleri].[KullanıcıAdı] AS [KullanıcıAdı], 
+    [v_Kullanici_Rolleri].[AdıSoyadı] AS [AdıSoyadı], 
+    [v_Kullanici_Rolleri].[Grubu] AS [Grubu], 
+    [v_Kullanici_Rolleri].[Tipi] AS [Tipi], 
+    [v_Kullanici_Rolleri].[KullaniciRolID] AS [KullaniciRolID], 
+    [v_Kullanici_Rolleri].[RolID] AS [RolID], 
+    [v_Kullanici_Rolleri].[RolName] AS [RolName], 
+    [v_Kullanici_Rolleri].[Ünvanı] AS [Ünvanı], 
+    [v_Kullanici_Rolleri].[LokasyonID] AS [LokasyonID], 
+    [v_Kullanici_Rolleri].[Lokasyon] AS [Lokasyon], 
+    [v_Kullanici_Rolleri].[Şirket] AS [Şirket], 
+    [v_Kullanici_Rolleri].[Fabrika] AS [Fabrika], 
+    [v_Kullanici_Rolleri].[Şube] AS [Şube], 
+    [v_Kullanici_Rolleri].[Departman] AS [Departman], 
+    [v_Kullanici_Rolleri].[FaaliyetAlaniID] AS [FaaliyetAlaniID], 
+    [v_Kullanici_Rolleri].[FaaliyetAlani] AS [FaaliyetAlani], 
+    [v_Kullanici_Rolleri].[Emaili] AS [Emaili], 
+    [v_Kullanici_Rolleri].[Fotografi] AS [Fotografi], 
+    [v_Kullanici_Rolleri].[Adminmi] AS [Adminmi], 
+    [v_Kullanici_Rolleri].[CepTelefonu] AS [CepTelefonu], 
+    [v_Kullanici_Rolleri].[DahiliTelefonu] AS [DahiliTelefonu], 
+    [v_Kullanici_Rolleri].[BakımOnarımYapabilir] AS [BakımOnarımYapabilir], 
+    [v_Kullanici_Rolleri].[Aktif] AS [Aktif]
+    FROM [dbo].[v_Kullanici_Rolleri] AS [v_Kullanici_Rolleri]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_IsIstek_Degerlendirmeleri_tbIsIstekleri" Association="Self.FK_IsIstek_Degerlendirmeleri_tbIsIstekleri">
+            <End Role="tbIsIstekleri" EntitySet="tbIsIstekleri" />
+            <End Role="tbIsIstek_Degerlendirmeleri" EntitySet="tbIsIstek_Degerlendirmeleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbIsIstek_EkliDosyalar_tbIsIstekleri" Association="Self.FK_tbIsIstek_EkliDosyalar_tbIsIstekleri">
+            <End Role="tbIsIstekleri" EntitySet="tbIsIstekleri" />
+            <End Role="tbIsIstek_EkliDosyalar" EntitySet="tbIsIstek_EkliDosyalar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbIsIstekleri_tbIstekTipleri" Association="Self.FK_tbIsIstekleri_tbIstekTipleri">
+            <End Role="tbIstekTipleri" EntitySet="tbIstekTipleri" />
+            <End Role="tbIsIstekleri" EntitySet="tbIsIstekleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbIsIstekleri_tbLokasyonTanimlari" Association="Self.FK_tbIsIstekleri_tbLokasyonTanimlari">
+            <End Role="tbLokasyonTanimlari" EntitySet="tbLokasyonTanimlari" />
+            <End Role="tbIsIstekleri" EntitySet="tbIsIstekleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbMakinalar_tbLokasyonTanimlari" Association="Self.FK_tbMakinalar_tbLokasyonTanimlari">
+            <End Role="tbLokasyonTanimlari" EntitySet="tbLokasyonTanimlari" />
+            <End Role="tbMakinalar" EntitySet="tbMakinalar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbOnemliIstekMakinaBakimModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbKullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="KullanıcıAdı" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Şifresi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdıSoyadı" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Grubu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tipi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Adminmi" Type="Boolean" Nullable="false" />
+          <Property Name="Ünvanı" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="LokasyonID" Type="Int32" />
+          <Property Name="FaaliyetAlaniID" Type="Int32" />
+          <Property Name="Emaili" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CepTelefonu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DahiliTelefonu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fotografi" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UstAmiriID" Type="Int32" />
+          <Property Name="SuanSistemde" Type="Boolean" />
+          <Property Name="DahiliMesajlaşmadaGörünür" Type="Boolean" />
+          <Property Name="BakımOnarımYapabilir" Type="Boolean" />
+          <Property Name="YerelIPAdresi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SonGirişZamanı" Type="DateTime" Precision="3" />
+          <Property Name="SonÇikişZamanı" Type="DateTime" Precision="3" />
+          <Property Name="Aktif" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="dbOnemliIstekMakinaBakimEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbKullanicilar" EntityType="Self.tbKullanicilar" />
+          <EntitySet Name="tbMakinalar" EntityType="dbOnemliIstekMakinaBakimModel.tbMakinalar" />
+          <EntitySet Name="tbIsIstekleri" EntityType="dbOnemliIstekMakinaBakimModel.tbIsIstekleri" />
+          <EntitySet Name="tbIstekTipleri" EntityType="dbOnemliIstekMakinaBakimModel.tbIstekTipleri" />
+          <AssociationSet Name="FK_tbIsIstekleri_tbIstekTipleri" Association="dbOnemliIstekMakinaBakimModel.FK_tbIsIstekleri_tbIstekTipleri">
+            <End Role="tbIstekTipleri" EntitySet="tbIstekTipleri" />
+            <End Role="tbIsIstekleri" EntitySet="tbIsIstekleri" />
+          </AssociationSet>
+          <EntitySet Name="tbIsIstek_Degerlendirmeleri" EntityType="dbOnemliIstekMakinaBakimModel.tbIsIstek_Degerlendirmeleri" />
+          <EntitySet Name="tbIsIstek_EkliDosyalar" EntityType="dbOnemliIstekMakinaBakimModel.tbIsIstek_EkliDosyalar" />
+          <AssociationSet Name="FK_IsIstek_Degerlendirmeleri_tbIsIstekleri" Association="dbOnemliIstekMakinaBakimModel.FK_IsIstek_Degerlendirmeleri_tbIsIstekleri">
+            <End Role="tbIsIstekleri" EntitySet="tbIsIstekleri" />
+            <End Role="tbIsIstek_Degerlendirmeleri" EntitySet="tbIsIstek_Degerlendirmeleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbIsIstek_EkliDosyalar_tbIsIstekleri" Association="dbOnemliIstekMakinaBakimModel.FK_tbIsIstek_EkliDosyalar_tbIsIstekleri">
+            <End Role="tbIsIstekleri" EntitySet="tbIsIstekleri" />
+            <End Role="tbIsIstek_EkliDosyalar" EntitySet="tbIsIstek_EkliDosyalar" />
+          </AssociationSet>
+          <EntitySet Name="tbLokasyonTanimlari" EntityType="dbOnemliIstekMakinaBakimModel.tbLokasyonTanimlari" />
+          <AssociationSet Name="FK_tbIsIstekleri_tbLokasyonTanimlari" Association="dbOnemliIstekMakinaBakimModel.FK_tbIsIstekleri_tbLokasyonTanimlari">
+            <End Role="tbLokasyonTanimlari" EntitySet="tbLokasyonTanimlari" />
+            <End Role="tbIsIstekleri" EntitySet="tbIsIstekleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbMakinalar_tbLokasyonTanimlari" Association="dbOnemliIstekMakinaBakimModel.FK_tbMakinalar_tbLokasyonTanimlari">
+            <End Role="tbLokasyonTanimlari" EntitySet="tbLokasyonTanimlari" />
+            <End Role="tbMakinalar" EntitySet="tbMakinalar" />
+          </AssociationSet>
+          <EntitySet Name="v_Kullanici_Rolleri" EntityType="dbOnemliIstekMakinaBakimModel.v_Kullanici_Rolleri" />
+          <EntitySet Name="tbKategoriler" EntityType="dbOnemliIstekMakinaBakimModel.tbKategoriler" />
+          </EntityContainer>
+        <EntityType Name="tbMakinalar">
+          <Key>
+            <PropertyRef Name="MakinaID" />
+          </Key>
+          <Property Name="MakinaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kodu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tanımı" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Grubu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tipi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SeriNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Markası" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Modeli" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Açıklaması" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LokasyonID" Type="Int32" Nullable="false" />
+          <Property Name="BakimTalimatKodu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ÖzelKod1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ÖzelKod2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ÖzelKod3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AlındığıTarih" Type="DateTime" Precision="0" />
+          <Property Name="AlındığıFirmaBilgileri" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SorumluPersonel" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PlanlıBakımYapılabilir" Type="Boolean" Nullable="false" />
+          <Property Name="KalibrasyonYapılabilir" Type="Boolean" Nullable="false" />
+          <Property Name="İşİsteklerindeGörüntülenebilir" Type="Boolean" Nullable="false" />
+          <Property Name="GünlükÇalışmaSaati" Type="Decimal" Precision="9" Scale="1" />
+          <Property Name="Fotoğrafı" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Aktif" Type="Boolean" Nullable="false" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayıtZamanı" Type="DateTime" Precision="3" />
+          <Property Name="KayıtBilgisayar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SonGuncelleyenID" Type="Int32" />
+          <Property Name="SonGuncellemeZamani" Type="DateTime" Precision="3" />
+          <Property Name="SonGuncellemeBilgisayar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MakinaMesaiBaşlangıçSaati" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MakinaMesaiBitişSaati" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AlindigiTarih" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbLokasyonTanimlari" Relationship="dbOnemliIstekMakinaBakimModel.FK_tbMakinalar_tbLokasyonTanimlari" FromRole="tbMakinalar" ToRole="tbLokasyonTanimlari" />
+        </EntityType>
+        <EntityType Name="tbIsIstekleri">
+          <Key>
+            <PropertyRef Name="IsIstekID" />
+          </Key>
+          <Property Name="IsIstekID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KayıtTipi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IstekYapanKullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="IstekTipiID" Type="Int32" Nullable="false" />
+          <Property Name="IstekLokasyonID" Type="Int32" Nullable="false" />
+          <Property Name="MakinaID" Type="Int32" Nullable="true" />
+          <Property Name="IstekKonusu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IstekAçıklaması" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IstekAçıklamasıXP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IstekDurumu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IstekAktif" Type="Boolean" Nullable="false" />
+          <Property Name="Bitti" Type="Boolean" Nullable="false" />
+          <Property Name="IstekSonuçAçıklaması" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IstekSonuçAçıklamasıXP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MakinaBakimOnarimID" Type="Int32" />
+          <Property Name="SorunGiderilmeZamanı" Type="DateTime" Precision="3" />
+          <Property Name="IsIstekBitisZamanı" Type="DateTime" Precision="3" />
+          <Property Name="KayıtZamanı" Type="DateTime" Precision="3" />
+          <Property Name="KayıtBilgisayar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SonGuncelleyenID" Type="Int32" />
+          <Property Name="SonGuncellemeZamani" Type="DateTime" Precision="3" />
+          <Property Name="SonGuncellemeBilgisayar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbIstekTipleri" Relationship="dbOnemliIstekMakinaBakimModel.FK_tbIsIstekleri_tbIstekTipleri" FromRole="tbIsIstekleri" ToRole="tbIstekTipleri" />
+          <NavigationProperty Name="tbIsIstek_Degerlendirmeleri" Relationship="dbOnemliIstekMakinaBakimModel.FK_IsIstek_Degerlendirmeleri_tbIsIstekleri" FromRole="tbIsIstekleri" ToRole="tbIsIstek_Degerlendirmeleri" />
+          <NavigationProperty Name="tbIsIstek_EkliDosyalar" Relationship="dbOnemliIstekMakinaBakimModel.FK_tbIsIstek_EkliDosyalar_tbIsIstekleri" FromRole="tbIsIstekleri" ToRole="tbIsIstek_EkliDosyalar" />
+          <NavigationProperty Name="tbLokasyonTanimlari" Relationship="dbOnemliIstekMakinaBakimModel.FK_tbIsIstekleri_tbLokasyonTanimlari" FromRole="tbIsIstekleri" ToRole="tbLokasyonTanimlari" />
+        </EntityType>
+        <EntityType Name="tbIstekTipleri">
+          <Key>
+            <PropertyRef Name="IstekTipiID" />
+          </Key>
+          <Property Name="IstekTipiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Grubu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tipi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Açıklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbIsIstekleri" Relationship="dbOnemliIstekMakinaBakimModel.FK_tbIsIstekleri_tbIstekTipleri" FromRole="tbIstekTipleri" ToRole="tbIsIstekleri" />
+        </EntityType>
+        <Association Name="FK_tbIsIstekleri_tbIstekTipleri">
+          <End Type="dbOnemliIstekMakinaBakimModel.tbIstekTipleri" Role="tbIstekTipleri" Multiplicity="1" />
+          <End Type="dbOnemliIstekMakinaBakimModel.tbIsIstekleri" Role="tbIsIstekleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbIstekTipleri">
+              <PropertyRef Name="IstekTipiID" />
+            </Principal>
+            <Dependent Role="tbIsIstekleri">
+              <PropertyRef Name="IstekTipiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbIsIstek_Degerlendirmeleri">
+          <Key>
+            <PropertyRef Name="IstekDegerlendirmeID" />
+          </Key>
+          <Property Name="IstekDegerlendirmeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsIstekID" Type="Int32" Nullable="false" />
+          <Property Name="DegerlendirenKullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="DeğerlendirmeDurumu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Onaylı" Type="Boolean" />
+          <Property Name="Puanı" Type="Int32" Nullable="false" />
+          <Property Name="Açıklaması" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="KaydedenID" Type="Int32" />
+          <Property Name="KayıtZamanı" Type="DateTime" Precision="3" />
+          <Property Name="KayıtBilgisayar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbIsIstekleri" Relationship="dbOnemliIstekMakinaBakimModel.FK_IsIstek_Degerlendirmeleri_tbIsIstekleri" FromRole="tbIsIstek_Degerlendirmeleri" ToRole="tbIsIstekleri" />
+        </EntityType>
+        <EntityType Name="tbIsIstek_EkliDosyalar">
+          <Key>
+            <PropertyRef Name="IsIstekEkliDosyaID" />
+          </Key>
+          <Property Name="IsIstekEkliDosyaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsIstekID" Type="Int32" Nullable="false" />
+          <Property Name="EkDosyaTipi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EkDosyaAdı" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EkDosyaKlasorYolu" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EkleyenKullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="KayıtZamanı" Type="DateTime" Precision="3" />
+          <Property Name="KayıtBilgisayar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbIsIstekleri" Relationship="dbOnemliIstekMakinaBakimModel.FK_tbIsIstek_EkliDosyalar_tbIsIstekleri" FromRole="tbIsIstek_EkliDosyalar" ToRole="tbIsIstekleri" />
+        </EntityType>
+        <Association Name="FK_IsIstek_Degerlendirmeleri_tbIsIstekleri">
+          <End Type="dbOnemliIstekMakinaBakimModel.tbIsIstekleri" Role="tbIsIstekleri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbOnemliIstekMakinaBakimModel.tbIsIstek_Degerlendirmeleri" Role="tbIsIstek_Degerlendirmeleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbIsIstekleri">
+              <PropertyRef Name="IsIstekID" />
+            </Principal>
+            <Dependent Role="tbIsIstek_Degerlendirmeleri">
+              <PropertyRef Name="IsIstekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbIsIstek_EkliDosyalar_tbIsIstekleri">
+          <End Type="dbOnemliIstekMakinaBakimModel.tbIsIstekleri" Role="tbIsIstekleri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbOnemliIstekMakinaBakimModel.tbIsIstek_EkliDosyalar" Role="tbIsIstek_EkliDosyalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbIsIstekleri">
+              <PropertyRef Name="IsIstekID" />
+            </Principal>
+            <Dependent Role="tbIsIstek_EkliDosyalar">
+              <PropertyRef Name="IsIstekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbLokasyonTanimlari">
+          <Key>
+            <PropertyRef Name="LokasyonID" />
+          </Key>
+          <Property Name="LokasyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lokasyon" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Şirket" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Fabrika" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Şube" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Departman" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbIsIstekleri" Relationship="dbOnemliIstekMakinaBakimModel.FK_tbIsIstekleri_tbLokasyonTanimlari" FromRole="tbLokasyonTanimlari" ToRole="tbIsIstekleri" />
+          <NavigationProperty Name="tbMakinalar" Relationship="dbOnemliIstekMakinaBakimModel.FK_tbMakinalar_tbLokasyonTanimlari" FromRole="tbLokasyonTanimlari" ToRole="tbMakinalar" />
+        </EntityType>
+        <Association Name="FK_tbIsIstekleri_tbLokasyonTanimlari">
+          <End Type="dbOnemliIstekMakinaBakimModel.tbLokasyonTanimlari" Role="tbLokasyonTanimlari" Multiplicity="1" />
+          <End Type="dbOnemliIstekMakinaBakimModel.tbIsIstekleri" Role="tbIsIstekleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbLokasyonTanimlari">
+              <PropertyRef Name="LokasyonID" />
+            </Principal>
+            <Dependent Role="tbIsIstekleri">
+              <PropertyRef Name="IstekLokasyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbMakinalar_tbLokasyonTanimlari">
+          <End Type="dbOnemliIstekMakinaBakimModel.tbLokasyonTanimlari" Role="tbLokasyonTanimlari" Multiplicity="1" />
+          <End Type="dbOnemliIstekMakinaBakimModel.tbMakinalar" Role="tbMakinalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbLokasyonTanimlari">
+              <PropertyRef Name="LokasyonID" />
+            </Principal>
+            <Dependent Role="tbMakinalar">
+              <PropertyRef Name="LokasyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="v_Kullanici_Rolleri">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+            <PropertyRef Name="KullanıcıAdı" />
+            <PropertyRef Name="KullaniciRolID" />
+            <PropertyRef Name="RolID" />
+            <PropertyRef Name="RolName" />
+            <PropertyRef Name="Adminmi" />
+            <PropertyRef Name="Aktif" />
+          </Key>
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="KullanıcıAdı" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AdıSoyadı" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Grubu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tipi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KullaniciRolID" Type="Int32" Nullable="false" />
+          <Property Name="RolID" Type="Int32" Nullable="false" />
+          <Property Name="RolName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ünvanı" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="LokasyonID" Type="Int32" />
+          <Property Name="Lokasyon" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Şirket" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Fabrika" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Şube" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Departman" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FaaliyetAlaniID" Type="Int32" />
+          <Property Name="FaaliyetAlani" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Emaili" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Fotografi" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Adminmi" Type="Boolean" Nullable="false" />
+          <Property Name="CepTelefonu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DahiliTelefonu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BakımOnarımYapabilir" Type="Boolean" />
+          <Property Name="Aktif" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbKategoriler">
+          <Key>
+            <PropertyRef Name="KategoriID" />
+          </Key>
+          <Property Name="KategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Aktif" Type="Boolean" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbOnemliIstekMakinaBakimModelStoreContainer" CdmEntityContainer="dbOnemliIstekMakinaBakimEntities">
+          <EntitySetMapping Name="tbKullanicilar">
+            <EntityTypeMapping TypeName="dbOnemliIstekMakinaBakimModel.tbKullanicilar">
+              <MappingFragment StoreEntitySet="tbKullanicilar">
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="KullanıcıAdı" ColumnName="KullanıcıAdı" />
+                <ScalarProperty Name="Şifresi" ColumnName="Şifresi" />
+                <ScalarProperty Name="AdıSoyadı" ColumnName="AdıSoyadı" />
+                <ScalarProperty Name="Grubu" ColumnName="Grubu" />
+                <ScalarProperty Name="Tipi" ColumnName="Tipi" />
+                <ScalarProperty Name="Adminmi" ColumnName="Adminmi" />
+                <ScalarProperty Name="Ünvanı" ColumnName="Ünvanı" />
+                <ScalarProperty Name="LokasyonID" ColumnName="LokasyonID" />
+                <ScalarProperty Name="FaaliyetAlaniID" ColumnName="FaaliyetAlaniID" />
+                <ScalarProperty Name="Emaili" ColumnName="Emaili" />
+                <ScalarProperty Name="CepTelefonu" ColumnName="CepTelefonu" />
+                <ScalarProperty Name="DahiliTelefonu" ColumnName="DahiliTelefonu" />
+                <ScalarProperty Name="Fotografi" ColumnName="Fotografi" />
+                <ScalarProperty Name="UstAmiriID" ColumnName="UstAmiriID" />
+                <ScalarProperty Name="SuanSistemde" ColumnName="SuanSistemde" />
+                <ScalarProperty Name="DahiliMesajlaşmadaGörünür" ColumnName="DahiliMesajlaşmadaGörünür" />
+                <ScalarProperty Name="BakımOnarımYapabilir" ColumnName="BakımOnarımYapabilir" />
+                <ScalarProperty Name="YerelIPAdresi" ColumnName="YerelIPAdresi" />
+                <ScalarProperty Name="SonGirişZamanı" ColumnName="SonGirişZamanı" />
+                <ScalarProperty Name="SonÇikişZamanı" ColumnName="SonÇikişZamanı" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbMakinalar">
+            <EntityTypeMapping TypeName="dbOnemliIstekMakinaBakimModel.tbMakinalar">
+              <MappingFragment StoreEntitySet="tbMakinalar">
+                <ScalarProperty Name="AlindigiTarih" ColumnName="AlindigiTarih" />
+                <ScalarProperty Name="MakinaMesaiBitişSaati" ColumnName="MakinaMesaiBitişSaati" />
+                <ScalarProperty Name="MakinaMesaiBaşlangıçSaati" ColumnName="MakinaMesaiBaşlangıçSaati" />
+                <ScalarProperty Name="SonGuncellemeBilgisayar" ColumnName="SonGuncellemeBilgisayar" />
+                <ScalarProperty Name="SonGuncellemeZamani" ColumnName="SonGuncellemeZamani" />
+                <ScalarProperty Name="SonGuncelleyenID" ColumnName="SonGuncelleyenID" />
+                <ScalarProperty Name="KayıtBilgisayar" ColumnName="KayıtBilgisayar" />
+                <ScalarProperty Name="KayıtZamanı" ColumnName="KayıtZamanı" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+                <ScalarProperty Name="Fotoğrafı" ColumnName="Fotoğrafı" />
+                <ScalarProperty Name="GünlükÇalışmaSaati" ColumnName="GünlükÇalışmaSaati" />
+                <ScalarProperty Name="İşİsteklerindeGörüntülenebilir" ColumnName="İşİsteklerindeGörüntülenebilir" />
+                <ScalarProperty Name="KalibrasyonYapılabilir" ColumnName="KalibrasyonYapılabilir" />
+                <ScalarProperty Name="PlanlıBakımYapılabilir" ColumnName="PlanlıBakımYapılabilir" />
+                <ScalarProperty Name="SorumluPersonel" ColumnName="SorumluPersonel" />
+                <ScalarProperty Name="AlındığıFirmaBilgileri" ColumnName="AlındığıFirmaBilgileri" />
+                <ScalarProperty Name="AlındığıTarih" ColumnName="AlındığıTarih" />
+                <ScalarProperty Name="ÖzelKod3" ColumnName="ÖzelKod3" />
+                <ScalarProperty Name="ÖzelKod2" ColumnName="ÖzelKod2" />
+                <ScalarProperty Name="ÖzelKod1" ColumnName="ÖzelKod1" />
+                <ScalarProperty Name="BakimTalimatKodu" ColumnName="BakimTalimatKodu" />
+                <ScalarProperty Name="LokasyonID" ColumnName="LokasyonID" />
+                <ScalarProperty Name="Açıklaması" ColumnName="Açıklaması" />
+                <ScalarProperty Name="Modeli" ColumnName="Modeli" />
+                <ScalarProperty Name="Markası" ColumnName="Markası" />
+                <ScalarProperty Name="SeriNo" ColumnName="SeriNo" />
+                <ScalarProperty Name="Tipi" ColumnName="Tipi" />
+                <ScalarProperty Name="Grubu" ColumnName="Grubu" />
+                <ScalarProperty Name="Tanımı" ColumnName="Tanımı" />
+                <ScalarProperty Name="Kodu" ColumnName="Kodu" />
+                <ScalarProperty Name="MakinaID" ColumnName="MakinaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbIsIstekleri">
+            <EntityTypeMapping TypeName="dbOnemliIstekMakinaBakimModel.tbIsIstekleri">
+              <MappingFragment StoreEntitySet="tbIsIstekleri">
+                <ScalarProperty Name="SonGuncellemeBilgisayar" ColumnName="SonGuncellemeBilgisayar" />
+                <ScalarProperty Name="SonGuncellemeZamani" ColumnName="SonGuncellemeZamani" />
+                <ScalarProperty Name="SonGuncelleyenID" ColumnName="SonGuncelleyenID" />
+                <ScalarProperty Name="KayıtBilgisayar" ColumnName="KayıtBilgisayar" />
+                <ScalarProperty Name="KayıtZamanı" ColumnName="KayıtZamanı" />
+                <ScalarProperty Name="IsIstekBitisZamanı" ColumnName="IsIstekBitisZamanı" />
+                <ScalarProperty Name="SorunGiderilmeZamanı" ColumnName="SorunGiderilmeZamanı" />
+                <ScalarProperty Name="MakinaBakimOnarimID" ColumnName="MakinaBakimOnarimID" />
+                <ScalarProperty Name="IstekSonuçAçıklamasıXP" ColumnName="IstekSonuçAçıklamasıXP" />
+                <ScalarProperty Name="IstekSonuçAçıklaması" ColumnName="IstekSonuçAçıklaması" />
+                <ScalarProperty Name="Bitti" ColumnName="Bitti" />
+                <ScalarProperty Name="IstekAktif" ColumnName="IstekAktif" />
+                <ScalarProperty Name="IstekDurumu" ColumnName="IstekDurumu" />
+                <ScalarProperty Name="IstekAçıklamasıXP" ColumnName="IstekAçıklamasıXP" />
+                <ScalarProperty Name="IstekAçıklaması" ColumnName="IstekAçıklaması" />
+                <ScalarProperty Name="IstekKonusu" ColumnName="IstekKonusu" />
+                <ScalarProperty Name="MakinaID" ColumnName="MakinaID" />
+                <ScalarProperty Name="IstekLokasyonID" ColumnName="IstekLokasyonID" />
+                <ScalarProperty Name="IstekTipiID" ColumnName="IstekTipiID" />
+                <ScalarProperty Name="IstekYapanKullaniciID" ColumnName="IstekYapanKullaniciID" />
+                <ScalarProperty Name="KayıtTipi" ColumnName="KayıtTipi" />
+                <ScalarProperty Name="IsIstekID" ColumnName="IsIstekID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbIstekTipleri">
+            <EntityTypeMapping TypeName="dbOnemliIstekMakinaBakimModel.tbIstekTipleri">
+              <MappingFragment StoreEntitySet="tbIstekTipleri">
+                <ScalarProperty Name="Açıklama" ColumnName="Açıklama" />
+                <ScalarProperty Name="Tipi" ColumnName="Tipi" />
+                <ScalarProperty Name="Grubu" ColumnName="Grubu" />
+                <ScalarProperty Name="IstekTipiID" ColumnName="IstekTipiID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbIsIstek_Degerlendirmeleri">
+            <EntityTypeMapping TypeName="dbOnemliIstekMakinaBakimModel.tbIsIstek_Degerlendirmeleri">
+              <MappingFragment StoreEntitySet="tbIsIstek_Degerlendirmeleri">
+                <ScalarProperty Name="KayıtBilgisayar" ColumnName="KayıtBilgisayar" />
+                <ScalarProperty Name="KayıtZamanı" ColumnName="KayıtZamanı" />
+                <ScalarProperty Name="KaydedenID" ColumnName="KaydedenID" />
+                <ScalarProperty Name="Açıklaması" ColumnName="Açıklaması" />
+                <ScalarProperty Name="Puanı" ColumnName="Puanı" />
+                <ScalarProperty Name="Onaylı" ColumnName="Onaylı" />
+                <ScalarProperty Name="DeğerlendirmeDurumu" ColumnName="DeğerlendirmeDurumu" />
+                <ScalarProperty Name="DegerlendirenKullaniciID" ColumnName="DegerlendirenKullaniciID" />
+                <ScalarProperty Name="IsIstekID" ColumnName="IsIstekID" />
+                <ScalarProperty Name="IstekDegerlendirmeID" ColumnName="IstekDegerlendirmeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbIsIstek_EkliDosyalar">
+            <EntityTypeMapping TypeName="dbOnemliIstekMakinaBakimModel.tbIsIstek_EkliDosyalar">
+              <MappingFragment StoreEntitySet="tbIsIstek_EkliDosyalar">
+                <ScalarProperty Name="KayıtBilgisayar" ColumnName="KayıtBilgisayar" />
+                <ScalarProperty Name="KayıtZamanı" ColumnName="KayıtZamanı" />
+                <ScalarProperty Name="EkleyenKullaniciID" ColumnName="EkleyenKullaniciID" />
+                <ScalarProperty Name="EkDosyaKlasorYolu" ColumnName="EkDosyaKlasorYolu" />
+                <ScalarProperty Name="EkDosyaAdı" ColumnName="EkDosyaAdı" />
+                <ScalarProperty Name="EkDosyaTipi" ColumnName="EkDosyaTipi" />
+                <ScalarProperty Name="IsIstekID" ColumnName="IsIstekID" />
+                <ScalarProperty Name="IsIstekEkliDosyaID" ColumnName="IsIstekEkliDosyaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbLokasyonTanimlari">
+            <EntityTypeMapping TypeName="dbOnemliIstekMakinaBakimModel.tbLokasyonTanimlari">
+              <MappingFragment StoreEntitySet="tbLokasyonTanimlari">
+                <ScalarProperty Name="Departman" ColumnName="Departman" />
+                <ScalarProperty Name="Şube" ColumnName="Şube" />
+                <ScalarProperty Name="Fabrika" ColumnName="Fabrika" />
+                <ScalarProperty Name="Şirket" ColumnName="Şirket" />
+                <ScalarProperty Name="Lokasyon" ColumnName="Lokasyon" />
+                <ScalarProperty Name="LokasyonID" ColumnName="LokasyonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_Kullanici_Rolleri">
+            <EntityTypeMapping TypeName="dbOnemliIstekMakinaBakimModel.v_Kullanici_Rolleri">
+              <MappingFragment StoreEntitySet="v_Kullanici_Rolleri">
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+                <ScalarProperty Name="BakımOnarımYapabilir" ColumnName="BakımOnarımYapabilir" />
+                <ScalarProperty Name="DahiliTelefonu" ColumnName="DahiliTelefonu" />
+                <ScalarProperty Name="CepTelefonu" ColumnName="CepTelefonu" />
+                <ScalarProperty Name="Adminmi" ColumnName="Adminmi" />
+                <ScalarProperty Name="Fotografi" ColumnName="Fotografi" />
+                <ScalarProperty Name="Emaili" ColumnName="Emaili" />
+                <ScalarProperty Name="FaaliyetAlani" ColumnName="FaaliyetAlani" />
+                <ScalarProperty Name="FaaliyetAlaniID" ColumnName="FaaliyetAlaniID" />
+                <ScalarProperty Name="Departman" ColumnName="Departman" />
+                <ScalarProperty Name="Şube" ColumnName="Şube" />
+                <ScalarProperty Name="Fabrika" ColumnName="Fabrika" />
+                <ScalarProperty Name="Şirket" ColumnName="Şirket" />
+                <ScalarProperty Name="Lokasyon" ColumnName="Lokasyon" />
+                <ScalarProperty Name="LokasyonID" ColumnName="LokasyonID" />
+                <ScalarProperty Name="Ünvanı" ColumnName="Ünvanı" />
+                <ScalarProperty Name="RolName" ColumnName="RolName" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+                <ScalarProperty Name="KullaniciRolID" ColumnName="KullaniciRolID" />
+                <ScalarProperty Name="Tipi" ColumnName="Tipi" />
+                <ScalarProperty Name="Grubu" ColumnName="Grubu" />
+                <ScalarProperty Name="AdıSoyadı" ColumnName="AdıSoyadı" />
+                <ScalarProperty Name="KullanıcıAdı" ColumnName="KullanıcıAdı" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbKategoriler">
+            <EntityTypeMapping TypeName="dbOnemliIstekMakinaBakimModel.tbKategoriler">
+              <MappingFragment StoreEntitySet="tbKategoriler">
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+                <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+                <ScalarProperty Name="Tipi" ColumnName="Tipi" />
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

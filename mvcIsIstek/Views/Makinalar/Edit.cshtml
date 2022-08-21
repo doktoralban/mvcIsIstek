@@ -1,0 +1,467 @@
+﻿@model mvcIsIstek.App_Data.tbMakinalar
+
+@{
+	ViewBag.Title = "Edit";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/MakinalarEdit.css" rel="stylesheet" />
+
+
+
+<h4>Seçili Makina Tanımını Değiştir - @Model.Kodu - </h4>
+<hr />
+
+@{
+	if ((string)TempData["MakinaKoduHatalı"] == "1")
+	{
+		<div class="alert alert-danger">
+			<strong>Makina Kodu Hatalı!</strong>En az 4 Karakter Olmalıdır......
+		</div>
+	}
+}
+
+@using (Html.BeginForm("Edit", "Makinalar", null, FormMethod.Post
+	, new { enctype = "multipart/form-data", id = "Edit-form" }))
+{
+	@*<form id="Edit-form" action="/Makinalar/Edit"    method="post" role="form" style="display: block;">*@
+	@Html.AntiForgeryToken()
+
+	<div class="form-horizontal">
+
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		@Html.HiddenFor(model => model.MakinaID)
+
+
+		<section style=" background-image: url('../../images/geometry2.png');">
+			<div class="container">
+				<div class="row">
+					<div class="board">
+						<div class="board-inner">
+							<ul class="nav nav-tabs" id="myTab">
+								<div class="liner"></div>
+								<li class="active">
+									<a href="#TAB1" data-toggle="tab" title="1">
+										<span class="round-tabs one">
+											<i class="glyphicon glyphicon-home">1</i>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#TAB2" data-toggle="tab" title="2">
+										<span class="round-tabs two">
+											<i class="glyphicon glyphicon-user">2</i>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#TAB3" data-toggle="tab" title="3">
+										<span class="round-tabs three">
+											<i class="glyphicon glyphicon-calendar">3</i>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#TAB4" data-toggle="tab" title="4">
+										<span class="round-tabs four">
+											<i class="glyphicon glyphicon-check">4</i>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#TAB5" data-toggle="tab" title="5">
+										<span class="round-tabs five">
+											<i class="glyphicon glyphicon-picture">5</i>
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div class="tab-pane fade in active" id="TAB1">
+								<div class="form-group">
+									@Html.LabelFor(model => model.Kodu, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Kodu, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.Kodu, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.Tanımı, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Tanımı, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.Tanımı, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.LokasyonID, "Lokasyon", htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.DropDownList("LokasyonID", null, htmlAttributes: new { @class = "form-control" })
+										@Html.ValidationMessageFor(model => model.LokasyonID, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.Grubu, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Grubu, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.Grubu, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.Tipi, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.DropDownListFor(m => Model.Tipi, (SelectList)ViewBag.Tipis, null, htmlAttributes: new { @class = "form-control" })
+
+										@Html.ValidationMessageFor(model => model.Tipi, "", new { @class = "text-danger" })
+										@*........................
+											<br />
+
+											@*........................*@
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane fade" id="TAB2">
+								<div class="form-group">
+									@Html.LabelFor(model => model.SeriNo, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.SeriNo, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.SeriNo, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.Markası, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Markası, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.Markası, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.Modeli, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Modeli, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.Modeli, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.Açıklaması, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Açıklaması, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.Açıklaması, "", new { @class = "text-danger" })
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane fade" id="TAB3">
+								<div class="form-group">
+									@Html.LabelFor(model => model.BakimTalimatKodu, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.BakimTalimatKodu, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.BakimTalimatKodu, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.AlindigiTarih, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@*@Html.JQueryUI().DatepickerFor(model => model.AlindigiTarih, new { htmlAttributes = new { @class = "form-control" } })*@
+										@*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*@
+										@*@Html.EditorFor(model => model.AlindigiTarih, new { htmlAttributes = new { @class = "form-control" } })*@
+
+										@Html.EditorFor(model => model.AlındığıTarih, new { htmlAttributes = new { @class = "form-control", id = "aTarih" } })
+										@*, type = "date"*@
+										@Html.ValidationMessageFor(model => model.AlindigiTarih, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.SorumluPersonel, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.SorumluPersonel, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.SorumluPersonel, "", new { @class = "text-danger" })
+									</div>
+								</div>
+							</div>
+
+
+							<div class="tab-pane fade" id="TAB4">
+								<div class="form-group">
+									@Html.LabelFor(model => model.PlanlıBakımYapılabilir, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										<div class="checkbox">
+											@Html.EditorFor(model => model.PlanlıBakımYapılabilir)
+											@Html.ValidationMessageFor(model => model.PlanlıBakımYapılabilir, "", new { @class = "text-danger" })
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.KalibrasyonYapılabilir, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										<div class="checkbox">
+											@Html.EditorFor(model => model.KalibrasyonYapılabilir)
+											@Html.ValidationMessageFor(model => model.KalibrasyonYapılabilir, "", new { @class = "text-danger" })
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.İşİsteklerindeGörüntülenebilir, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										<div class="checkbox">
+											@Html.EditorFor(model => model.İşİsteklerindeGörüntülenebilir)
+											@Html.ValidationMessageFor(model => model.İşİsteklerindeGörüntülenebilir, "", new { @class = "text-danger" })
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.Aktif, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										<div class="checkbox">
+											@Html.EditorFor(model => model.Aktif)
+											@Html.ValidationMessageFor(model => model.Aktif, "", new { @class = "text-danger" })
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="tab-pane fade" id="TAB5">
+								<div class="form-group">
+									@Html.LabelFor(model => model.Fotoğrafı, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+
+										@if (Model.Fotoğrafı != null)
+										{
+											<img  id="myImg" src="data:image/png;base64,
+														@Convert.ToBase64String(Model.Fotoğrafı,
+														Base64FormattingOptions.None)"
+													 class="img-rounded" width="320" height="250"
+													 alt="Image" />
+										}
+										<p>	Değiştir:</p>
+										<input type="file" id="foto" name="uploadDegistir" />
+
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+
+						<div class="clearfix"></div>
+
+
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+		<div class="form-group">
+			<div class="col-md-1 col-md-offset-3">
+				<button type="submit" class="btn btn-primary">
+					<span class="glyphicon glyphicon-floppy-save"></span>
+					KAYDET
+				</button>
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+	@*</form>*@
+
+}
+
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+	<span class="close">&times;</span>
+	<img class="modal-content" id="img01" >
+	<div id="caption"></div>
+</div>
+
+<script>
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+	// Get the image and insert it inside the modal - use its "alt" text as a caption
+	var img = document.getElementById('myImg');
+	var modalImg = document.getElementById("img01");
+	var captionText = document.getElementById("caption");
+	img.onclick = function () {
+		modal.style.display = "block";
+		modalImg.src = this.src;
+		captionText.innerHTML = this.alt;
+	}
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function () {
+		modal.style.display = "none";
+	}
+</script>
+
+
+
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		//alert("hello world");
+
+		var dateControl = document.querySelector('input[id="aTarih"]');
+		var dv = dateControl.value;
+		//alert(dv); //2.06.2017  0000000 benzeri olarak geliyor.(gün.ay.gün dakikasaniye gibi)
+
+		var gun = dv.split(".", 1)[0];
+		var ay = dv.split(".", 2)[1];
+
+		var res1 = dv.split(" ", 1)[0];
+		var yil = res1.split(".")[2];
+
+		if (gun < 10) { gun = "0" + gun }
+
+		document.getElementById('aTarih').value = yil + "-" + ay + "-" + gun;
+
+		document.getElementById('aTarih').type = 'date';
+
+	});
+</script>
+
+
+
+@*<script type="text/javascript">
+		jQuery(function () {
+			alert("hello world");
+		});
+	</script>*@
+
+<script type="text/javascript">
+	//$(function dtcontrol() {
+	//	var dateControl = document.querySelector('input[type="date"]');
+	//	var dv =  dateControl.value ;
+	//	alert(dv);
+
+	//if (dv.value == null) {
+	//	dateControl.value = '2011-11-11';
+	//}
+	//else {
+	//	dateControl.value = '2012-12-12';
+	//}
+
+
+
+	//});
+</script>
+
+@*<script type="text/javascript">
+							$(function () {
+								$('#AlindigiTarih').datetimepicker({
+									format: "DD/MM/YYYY"
+								}).on('dp.change', function (e) {
+									$(this).data('DateTimePicker').hide();
+								});
+							});
+	</script>*@
+
+<script>
+	$(function () {
+		$('a[title]').tooltip();
+	});
+</script>
+
+
+@*<script type="text/javascript">
+		//$.validator.setDefaults({
+		//	submitHandler: function () {
+		//		alert("tamam!");
+		//	}
+		//});
+
+		$(document).ready(function () {
+
+			$("#Edit-form").validate({
+				rules: {
+					Kodu: {
+						required: true,
+						minlength: 4,
+						maxlength: 50,
+						nowhitespace: true
+					},
+					Tanımı: {
+						required: true,
+						minlength: 5,
+						maxlength: 50,
+						nowhitespace: true
+					}
+				},
+				Kodu: {
+					required: "Makina Kodu Olmalıdır",
+					minlength: "Makina Kodu  en az 4 karakter olmalıdır.."
+				},
+				Tanımı: {
+					required: "Makina Tanımı Olmalıdır",
+					minlength: "Makina Tanımı  en az 5 karakter olmalıdır.."
+				}
+			},
+				errorElement: "em",
+				errorPlacement: function (error, element) {
+					// Add the `help-block` class to the error element
+					error.addClass("help-block");
+
+					// Add `has-feedback` class to the parent div.form-group
+					// in order to add icons to inputs
+					element.parents(".col-sm-5").addClass("has-feedback");
+
+					if (element.prop("type") === "checkbox") {
+						error.insertAfter(element.parent("label"));
+					} else {
+						error.insertAfter(element);
+					}
+
+					// Add the span element, if doesn't exists, and apply the icon classes to it.
+					if (!element.next("span")[0]) {
+						$("<span class='glyphicon glyphicon-remove form-control-feedback'></span>").insertAfter(element);
+					}
+				},
+				success: function (label, element) {
+					// Add the span element, if doesn't exists, and apply the icon classes to it.
+					if (!$(element).next("span")[0]) {
+						$("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
+					}
+				},
+				highlight: function (element, errorClass, validClass) {
+					$(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
+					$(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
+				},
+				unhighlight: function (element, errorClass, validClass) {
+					$(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
+					$(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
+				}
+									});
+
+	</script>*@

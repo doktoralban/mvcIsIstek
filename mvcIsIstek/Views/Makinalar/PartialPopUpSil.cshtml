@@ -1,0 +1,123 @@
+﻿@model mvcIsIstek.App_Data.tbMakinalar
+
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+	</button>
+	<h4 class="modal-title text-danger">Silinecek Kayıt - Pop Up</h4>
+</div>
+
+<div class="modal-body">
+
+	<div class="row">
+		<div class="col-md-6">
+			<div>
+				<dl class="dl-horizontal">
+					<dt>
+						@Html.DisplayNameFor(model => model.Kodu)
+					</dt>
+					<dd>
+						@Html.DisplayFor(model => model.Kodu)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Tanımı)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Tanımı)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Grubu)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Grubu)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Tipi)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Tipi)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.SeriNo)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.SeriNo)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Markası)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Markası)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Modeli)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Modeli)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Açıklaması)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Açıklaması)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.tbLokasyonTanimlari.Lokasyon)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.tbLokasyonTanimlari.Lokasyon)
+					</dd>
+
+				</dl>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div>
+				@{
+					if (Model.Fotoğrafı != null)
+					{
+						<img src="data:image/png;base64,
+                    @Convert.ToBase64String(Model.Fotoğrafı,
+                    Base64FormattingOptions.None)"
+								 class="img-rounded" width="200" height="200"
+								 alt="Image" />
+					}
+				}
+
+			</div>
+		</div>
+	</div> 
+
+
+</div>
+
+<div class="modal-footer">
+	<button type="button" class="btn btn-danger glyphicon glyphicon-remove-sign pull-left" 
+					data-dismiss="modal">
+		SİL
+	</button>
+
+	<button type="button" class="btn btn-default"
+					data-dismiss="modal">
+		VAZGEÇ
+	</button>
+</div>
+
+
+

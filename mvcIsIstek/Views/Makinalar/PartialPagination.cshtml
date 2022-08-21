@@ -1,0 +1,34 @@
+﻿
+@model IEnumerable<mvcIsIstek.App_Data.tbMakinalar>
+
+@{  
+	if ((@ViewBag.TumMakinalarSayisi % 10) == 0)
+	{
+		ViewBag.SayfaSayisi = (@ViewBag.TumMakinalarSayisi / 10) + 1;
+	}
+	else
+	{
+		ViewBag.SayfaSayisi = (@ViewBag.TumMakinalarSayisi / 10) + 2;
+	}
+}  
+
+<div class="container">
+	<ul id="pgs" class="pagination">
+		<li id="li-0">@Html.ActionLink("Hepsi", "Sayfala/Hepsi", "Makinalar")</li> 
+	</ul>
+</div>
+
+
+<script type="text/javascript">
+	 $(document).ready(function () {
+           @*$('#pgs').append('	<li id="li-6">@Html.ActionLink("6", "Sayfala/6", "Makinalar")</li>');*@
+					var ss = @ViewBag.SayfaSayisi  ;
+
+					for (var i = 1; i < ss; i++)
+						$('#pgs').append('<li id="li-' + i + '"><a href="/Makinalar/Sayfala/' + i.toString() + '">'  + i.toString()  +  '</a></li>');
+
+
+
+	});
+
+</script>

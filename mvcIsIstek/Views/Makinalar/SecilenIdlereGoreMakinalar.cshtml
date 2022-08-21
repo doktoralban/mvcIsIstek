@@ -1,0 +1,45 @@
+﻿@model IEnumerable<mvcIsIstek.App_Data.tbMakinalar>
+
+@{
+	ViewBag.Title = "SecilenIdlereGoreMakinalar";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SecilenIdlereGoreMakinalar</h2>
+
+
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.MakinaID)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Kodu)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Tanımı)
+		</th>
+
+	</tr>
+
+@foreach (var item in Model) {
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.MakinaID)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Kodu)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Tanımı)
+		</td>
+
+		<td>
+			@Html.ActionLink("Edit", "Edit", new { id = item.MakinaID }) |
+			@Html.ActionLink("Details", "Details", new { id = item.MakinaID }) |
+			@Html.ActionLink("Delete", "Delete", new { id = item.MakinaID })
+		</td>
+	</tr>
+}
+
+</table>

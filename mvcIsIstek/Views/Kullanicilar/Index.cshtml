@@ -1,0 +1,111 @@
+﻿@model IEnumerable<mvcIsIstek.App_Data.tbKullanicilar>
+
+@{
+    ViewBag.Title = "Kullanicilar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Yeni Kullanıcı +", "Create")
+</p>
+<table class="table table-striped table-condensed table-hover table-responsive sortable "   >
+	@*örnek sort işlemleri -> <thead>. .bu sort işlemi için ;respond.js,moment.js, bootstrap-sortable.js,bootstrap-sortable.css eklenmelidir. ayrıca table class taki -sortable- iadesi olmalıdır..
+		<tr class="danger">
+			<th data-defaultsign="_19"> Employee ID</th>
+			<th data-defaultsign="AZ">Name</th>
+			<th data-defaultsign="AZ">Title</th>
+			<th data-defaultsign="month">Birth Date</th>
+			<th data-firstsort="desc">Address</th>
+			<th data-defaultsign="AZ">City</th>
+			<th data-defaultsort="disabled">Country</th>
+		</tr>
+	</thead>*@  
+	<thead>
+		<tr class="warning navbar-inverse">
+			<th>
+			</th>
+			<th>
+				Foto
+			</th>
+			<th data-defaultsign="AZ">
+				Kullanıcı Adı
+			</th>
+			<th data-defaultsign="AZ">
+				Adı Soyadı
+			</th>
+			<th data-defaultsign="AZ">
+				Grubu
+			</th>
+			<th>
+				Admin mi?
+			</th>
+			<th >
+				Bakım Onarım <br />Yapabilir?
+			</th>
+
+			<th>
+				Aktif <br />Kullanıcı?
+			</th>
+			<th></th>
+		</tr>
+</thead>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.ActionLink("Değiştir", "Edit", new { id = item.KullaniciID })
+				</td>
+				<td>
+					@if (item.Fotografi != null)
+				{
+
+						<img src="data:image/png;base64,
+																		@Convert.ToBase64String(item.Fotografi,
+																		Base64FormattingOptions.None)"
+								 class="img-circle" width="100" height="100"
+								 alt="Image" />
+
+				}
+				else
+				{
+						<img src="~/images/no_user.png"
+								 class="img-circle" width="100" height="100"
+								 alt="Image" />
+				}
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.KullanıcıAdı)
+				</td> 
+				<td>
+					@Html.DisplayFor(modelItem => item.AdıSoyadı)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Grubu)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.Adminmi)
+				</td>
+			 
+				<td>
+					@Html.DisplayFor(modelItem => item.BakımOnarımYapabilir)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.Aktif)
+				</td>
+				<td>
+					@Html.ActionLink("Sil", "Delete", new { id = item.KullaniciID })
+				</td>
+			</tr>
+		}
+
+</table>

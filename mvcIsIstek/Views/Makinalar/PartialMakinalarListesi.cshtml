@@ -1,0 +1,239 @@
+﻿@model IEnumerable<mvcIsIstek.App_Data.tbMakinalar>
+
+@section Head
+{
+<script src="~/Scripts/bootbox.min.js"></script>
+
+
+	}
+
+
+@{
+	var i = 0;
+
+}
+
+<table id="myTable" class="table table-striped table-condensed table-responsive table-bordered">
+	<tr class="text-center">
+		<th>
+		</th>
+		<th>
+			Lokasyon
+		</th>
+		<th>
+			Kodu
+		</th>
+		<th>
+			Tanımı
+		</th>
+		<th>
+			Grubu
+		</th>
+		<th>
+			Tipi
+		</th>
+		<th>
+			Seri No
+		</th>
+		<th>
+			Markası
+		</th>
+		<th>
+			Modeli
+		</th>
+		<th>
+			Açıklaması
+		</th>
+		<th>
+			Bakım <br />Talimat Kodu
+		</th>
+		<th>
+			Planlı<br /> Bakım Yapılır
+		</th>
+		<th>
+			Kalibrasyon<br /> Yapılır
+		</th>
+		<th>
+			İş İstekte<br />Görünür
+		</th>
+		<th>
+			Aktif
+		</th>
+
+		<th>İşlemler</th>
+	</tr>
+
+
+	@foreach (var item in Model)
+			{
+				i++;
+		<tr>
+			<td>
+				@i.ToString()
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.tbLokasyonTanimlari.Lokasyon)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Kodu)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Tanımı)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Grubu)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Tipi)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.SeriNo)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Markası)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Modeli)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Açıklaması)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.BakimTalimatKodu)
+			</td>
+			<td>
+				@{
+					if (item.PlanlıBakımYapılabilir == false)
+					{
+						<p class="text-danger">Hayır</p>
+					}
+					else
+					{
+						<p class="text-success">Evet</p>
+					}
+				}
+			</td>
+			<td>
+				@{
+				if (item.KalibrasyonYapılabilir == false)
+				{
+						<p class="text-danger">Hayır</p>
+				}
+				else
+				{
+						<p class="text-success">Evet</p>
+				}
+				}
+			</td>
+			<td>
+				@{
+				if (item.İşİsteklerindeGörüntülenebilir == false)
+				{
+						<p class="text-danger">Hayır</p>
+				}
+				else
+				{
+						<p class="text-success">Evet</p>
+				}
+				}
+			</td>
+			<td>
+				@{
+					if (item.Aktif == false)
+					{
+						<p class="text-danger">Hayır</p>
+					}
+					else
+					{
+						<p class="text-success">Evet</p>
+					}
+				}
+			</td>
+
+
+			<td>
+				<span class="btn btn-xs btn-primary" id="edit_@item.MakinaID"
+							onclick="createModalDetay('@Url.Action("DetayPopUp", "Makinalar"
+																 , new {id=item.MakinaID })')">Detay</span>
+
+				@*..................................*@
+				@Html.ActionLink(" ", "Edit", new { id = item.MakinaID }
+		 , new
+		 {
+			 @class = "btn btn-default fa fa-edit"
+		 ,
+			 Style = "color:Blue;",
+			 data_toggle = "tooltip",
+			 title = "Değiştir"
+		 })
+				@*..........................................*@
+				<span class="btn btn-xs btn-danger" id="delete_@item.MakinaID"
+							onclick="createModalSil('@Url.Action("SilPopUp", "Makinalar"
+																 , new {id=item.MakinaID })')">SİL</span>
+
+				@*..................................*@
+ 				@Html.ActionLink("Kart", "MakinaKarti", new { id = item.MakinaID }
+		 , new
+		 {
+			 @class = "btn btn-default fa fa-card"
+		 ,
+			 Style = "color:orange;",
+			 data_toggle = "tooltip",
+			 title = "Makina Karti"
+		 })
+				@*..........................................*@
+				@*@Html.ActionLink(" ", "Delete", new { id = item.MakinaID }
+		, new
+		{
+			@class = "btn btn-default fa fa-remove"
+		,
+			Style = "color:Maroon;"
+		,
+			data_toggle = "tooltip"
+		,
+			title = "Sil"
+		})*@
+				@*..................................*@
+
+
+
+			</td>
+		</tr>
+      }
+
+</table>
+
+<div class="modal fade" id="myModalDegistir" role="dialog"
+		 aria-labelledby="myModalLabel" aria-hidden="true"
+		 data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog">
+		<div class="modal-content" id="modelContentDegistir">
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="myModalSil" role="dialog"
+		 aria-labelledby="myModalLabel" aria-hidden="true"
+		 data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog">
+		<div class="modal-content" id="modelContentSil">
+		</div>
+	</div>
+</div>
+
+ 
+<script>
+	function createModalDetay(url) {
+		$('#modelContentDegistir').load(url);
+		$('#myModalDegistir').modal('show');
+	}
+</script>
+
+<script>
+	function createModalSil(url) {
+		$('#modelContentSil').load(url);
+		$('#myModalSil').modal('show');
+	}
+</script>
+
+

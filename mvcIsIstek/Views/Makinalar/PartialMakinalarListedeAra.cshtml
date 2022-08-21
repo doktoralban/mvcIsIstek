@@ -1,0 +1,21 @@
+﻿
+
+
+<select id="SelectAraSutun" class="form-control pull-left"
+				onchange="Fn_Bul(SelectAraSutun.value); txtAra.focus()">
+	<option value="">Aranacak Sütun</option>
+	<option value="1">Lokasyonu</option>
+	<option value="2">Kodu</option>
+	<option value="3">Tanımı</option>
+	<option value="4">Grubu</option>
+	<option value="5">Tipi</option>
+	<option value="6">Seri No</option>
+	<option value="7">Markası</option>
+	<option value="8">Modeli</option>
+	<option value="9">Açıklaması</option>
+
+</select>
+
+<input type="text" id="txtAra" class="form-control pull-left"
+			 onkeyup="Fn_Bul(SelectAraSutun.value)"
+			 placeholder="kayıt bul">

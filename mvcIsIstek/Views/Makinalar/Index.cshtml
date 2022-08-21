@@ -1,0 +1,250 @@
+﻿@model IEnumerable<mvcIsIstek.App_Data.tbMakinalar>
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+
+
+<h2>Makinalar ve Ekipmanlar Listesi</h2>
+
+
+@{
+	var i = 0;
+
+}
+
+
+<hr />
+<div class="row">
+	<div class="col-md-12">
+ 		<p id="pMakinalar" class="text-primary"></p>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<ul id="listMakinalar" />
+ 		<hr />
+	</div>
+</div>
+<button id="btn1"   class="btn btn-default">seçilen id ler</button>
+
+<br />
+
+@*@Html.ActionLink("Seçili Makinalar", "SecilenIdlereGoreMakinalar", "Makinalar",
+												new
+												{
+													sSecilenidler = Fn_Secilenler()
+												},
+												null
+												
+
+												)*@
+
+
+<hr />
+
+
+<div class="row">
+	<div class="col-md-12">
+		<table id="myTable" class="table table-striped table-condensed table-responsive table-bordered">
+			<tr class="text-center">
+				<th>
+				</th>
+				<th>
+					Lokasyon
+					@*@Html.DisplayNameFor(model => model.tbLokasyonTanimlari.Lokasyon)*@
+				</th>
+				<th>
+					Kodu
+					@*@Html.DisplayNameFor(model => model.Kodu)*@
+				</th>
+				<th>
+					Tanımı
+					@*@Html.DisplayNameFor(model => model.Tanımı)*@
+				</th>
+				<th>
+					Grubu
+					@*@Html.DisplayNameFor(model => model.Grubu)*@
+				</th>
+				<th>
+					Tipi
+					@*@Html.DisplayNameFor(model => model.Tipi)*@
+				</th>
+				<th>
+					Seri No
+					@*@Html.DisplayNameFor(model => model.SeriNo)*@
+				</th>
+				<th>
+					Markası
+					@*@Html.DisplayNameFor(model => model.Markası)*@
+				</th>
+				<th>
+					Modeli
+					@*@Html.DisplayNameFor(model => model.Modeli)*@
+				</th>
+				<th>
+					Açıklaması
+					@*@Html.DisplayNameFor(model => model.Açıklaması)*@
+				</th>
+				<th>
+					Bakım <br />Talimat Kodu
+					@*@Html.DisplayNameFor(model => model.BakimTalimatKodu)*@
+				</th>
+				<th>
+					Planlı<br /> Bakım Yapılır
+					@*@Html.DisplayNameFor(model => model.PlanlıBakımYapılabilir)*@
+				</th>
+				<th>
+					Aktif
+				</th>
+				<th>
+					SEÇ
+				</th>
+
+				<th>İşlemler</th>
+			</tr>
+
+
+			@foreach (var item in Model)
+			{
+
+				i++;
+				<tr>
+					<td>
+						@i.ToString()
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.tbLokasyonTanimlari.Lokasyon)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Kodu)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Tanımı)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Grubu)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Tipi)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.SeriNo)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Markası)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Modeli)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Açıklaması)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.BakimTalimatKodu)
+					</td>
+					<td>
+						@{
+							if (item.PlanlıBakımYapılabilir == false)
+							{
+								<p class="text-danger">Hayır</p>
+							}
+							else
+							{
+								<p class="text-success">Evet</p>
+							}
+						}
+					</td>
+					<td>
+						@{
+							if (item.Aktif == false)
+							{
+								<p class="text-danger">Hayır</p>
+							}
+							else
+							{
+								<p class="text-success">Evet</p>
+							}
+						}
+					</td>
+
+					@*....................................................*@
+					<td>
+						@Html.DisplayFor(modelItem => item.MakinaID)
+						@Html.HiddenFor(modelItem => item.xAktif)
+						@Html.CheckBoxFor(modelItem => item.xAktif, new { @class = "cbk", id = item.MakinaID })
+
+					</td>
+					@*....................................................*@
+
+				</tr>
+			}
+
+		</table>
+
+	</div>
+</div>
+@*-------------------------------------------------------------------*@
+
+ <script>
+	 function Fn_Secilenler() {
+
+		 return document.getElementById("pMakinalar").innerHTML;
+	 }
+ </script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+
+				$("#btn1").click(function () {
+					var pMaks = document.getElementById("pMakinalar").innerHTML;
+
+            jQuery.ajax({
+                type: "POST",
+                url: "@Url.Action("SecilenIdlereGoreMakinalar")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+							data: JSON.stringify({ sSecilenidler: pMaks  }),
+							success: function (data) {
+ 								window.location.href = '@Url.Action("SecilenMakinalarListesiEkrani", "Makinalar")';
+							},
+                failure: function (errMsg) { alert(errMsg); }
+            });
+				}); 
+			$(".cbk").change(function () {
+				//$('#listMakinalar').empty();
+				document.getElementById('pMakinalar').innerHTML = '';
+            var select = "";
+            $("input[type = 'checkbox']").each(function () {
+                var c = $(this).is(":checked");
+							if (c) {
+
+								//$('#listMakinalar').empty();
+ 								 $.ajax({
+                url: "@Url.Action("Bul")",
+                type: "GET",
+                dataType: "json",
+									 data: {
+										 mid: this.id
+                },
+                error: function (response) {
+                    alert("problem -- " + response.responseText);
+                },
+                success: function (response) {
+									//$('<li>', { text: response }).appendTo($('#listMakinalar'));
+									document.getElementById("pMakinalar").append(response);
+
+                }
+            });
+							}
+            })
+        })
+    })
+</script>
+
+
